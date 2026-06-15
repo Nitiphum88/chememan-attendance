@@ -1,15 +1,13 @@
 /* ============================================================
-   CHEMEMAN Training Attendance System — app.js
+   CHEMEMAN Training Attendance System — app.js (Cloud Sync Version)
    ============================================================ */
-
 const SCRIPT_URL  = "https://script.google.com/macros/s/AKfycbyl48Wi5UWd0-opSZHHFN_nc_B1ovE23rnyaJcmHRYLOhnM7QfeNh71FqJFMnPrfZxd/exec";
 const PIN_KEY     = "cman_pin_v3";
 const DATA_KEY    = "cman_data_v3";
-const COURSE_KEY  = "cman_courses_v3";   // รายการหัวข้ออบรม
-
+const COURSE_KEY  = "cman_courses_v3";   
 let hrUnlocked  = false;
 let activeDate  = "";
-let hrPage      = "list";   // "list" | "courses"
+let hrPage      = "list";   
 
 /* ── STORAGE ── */
 function getPin()       { return localStorage.getItem(PIN_KEY) || "1234"; }
@@ -19,6 +17,31 @@ function saveData(d)    { localStorage.setItem(DATA_KEY, JSON.stringify(d)); }
 function getCourses()   { try { return JSON.parse(localStorage.getItem(COURSE_KEY) || "[]"); } catch(e) { return []; } }
 function saveCourses(c) { localStorage.setItem(COURSE_KEY, JSON.stringify(c)); }
 
+/* ── CLOUD SYNC: ดึงข้อมูลจาก Google Sheets มาลงเครื่อง ── */
+async function loadCloudData() {
+  console.log("กำลังซิงค์ข้อมูลจาก Cloud...");
+  try {
+    const response = await fetch(SCRIPT_URL);
+    const result = await response.json();
+    
+    // ซิงค์หัวข้ออบรม
+    if (result.courses) {
+      saveCourses(result.courses);
+      populateCourseSelect();
+      if (hrPage === "courses") renderCourses();
+    }
+    
+    // ซิงค์รายชื่อผู้เข้าอบรม
+    if (result.attendance) {
+      saveData(result.attendance);
+      if (hrUnlocked) renderDashboard();
+    }
+    console.log("ซิงค์ข้อมูลสำเร็จ");
+  } catch (e) {
+    console.error("Cloud Sync Error:", e);
+  }
+}
+
 /* ── DATE HELPERS ── */
 function todayISO() {
   const t = new Date();
@@ -26,7 +49,7 @@ function todayISO() {
     String(t.getMonth()+1).padStart(2,"0") + "-" +
     String(t.getDate()).padStart(2,"0");
 }
-/* dd/mm/yy (พ.ศ. แบบย่อ 2 หลัก) */
+
 function toShortThai(dateStr) {
   if (!dateStr) return "";
   const d  = new Date(dateStr + "T00:00:00");
@@ -35,7 +58,7 @@ function toShortThai(dateStr) {
   const yy = String(d.getFullYear()+543).slice(-2);
   return dd + "/" + mm + "/" + yy;
 }
-/* dd/mm/yyyy (พ.ศ. เต็ม) สำหรับ Excel */
+
 function toFullThai(dateStr) {
   if (!dateStr) return "";
   const d    = new Date(dateStr + "T00:00:00");
@@ -44,6 +67,7 @@ function toFullThai(dateStr) {
   const yyyy = d.getFullYear()+543;
   return dd + "/" + mm + "/" + yyyy;
 }
+
 function toSheetName(dateStr) {
   if (!dateStr) return "ไม่ระบุวัน";
   const d  = new Date(dateStr + "T00:00:00");
@@ -59,16 +83,19 @@ function switchPage(p) {
   document.getElementById("page-" + p).classList.add("active");
   document.getElementById("tab-" + p).classList.add("active");
   if (p === "hr" && hrUnlocked) renderDashboard();
-  if (p === "sign") populateCourseSelect();
+  if (p === "sign") {
+    populateCourseSelect();
+    loadCloudData(); // โหลดหัวข้อใหม่เผื่อ HR เพิ่งเพิ่ม
+  }
 }
 
 /* ── INIT ── */
 window.addEventListener("load", () => {
   document.getElementById("s-date").value = todayISO();
-  populateCourseSelect();
+  loadCloudData(); // โหลดข้อมูลจาก Cloud ทันทีที่เปิดเว็บ
 });
 
-/* ── POPULATE COURSE DROPDOWN (หน้าลงชื่อ) ── */
+/* ── POPULATE COURSE DROPDOWN ── */
 function populateCourseSelect() {
   const courses = getCourses().filter(c => c.active);
   const sel = document.getElementById("s-course");
@@ -104,20 +131,20 @@ function submitForm() {
   document.getElementById("loading-bar").style.display = "block";
 
   const now = new Date();
-  const pad = n => String(n).padStart(2,"0");
-  const rec = {
-    id: Date.now(), name, dept, position: pos, course, tel,
+  const timeStr = String(now.getHours()).padStart(2,"0") + ":" + String(now.getMinutes()).padStart(2,"0");
+
+  const payload = {
+    action: "attendance",
+    name, dept, position: pos, course, tel, 
     trainingDate: date,
-    dateDisplay: toShortThai(date),
-    time: pad(now.getHours()) + ":" + pad(now.getMinutes()),
-    dateSort: date
+    time: timeStr
   };
-  saveData([...getData(), rec]);
 
   fetch(SCRIPT_URL, {
-    method: "POST", mode: "no-cors",
+    method: "POST",
+    mode: "no-cors",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, dept, position: pos, course, tel, trainingDate: date })
+    body: JSON.stringify(payload)
   }).finally(() => {
     document.getElementById("success-name").textContent  = name;
     document.getElementById("success-course").textContent = course;
@@ -126,6 +153,7 @@ function submitForm() {
     document.getElementById("form-wrap").style.display    = "none";
     document.getElementById("success-wrap").style.display = "";
     document.getElementById("loading-bar").style.display  = "none";
+    loadCloudData(); // โหลดข้อมูลรายชื่อใหม่เข้า LocalStorage
   });
 }
 
@@ -148,12 +176,14 @@ function checkPin() {
     document.getElementById("hr-main").style.display      = "";
     document.getElementById("pin-err").style.display      = "none";
     showHrTab("list");
+    loadCloudData(); // ซิงค์ข้อมูลล่าสุดเมื่อเข้าหน้าผู้ดูแล
   } else {
     document.getElementById("pin-err").style.display = "block";
     document.getElementById("pin-input").value = "";
     document.getElementById("pin-input").focus();
   }
 }
+
 function changePin() {
   const np = prompt("ใส่รหัส PIN ใหม่ (ตัวเลข 4-8 หลัก):");
   if (!np) return;
@@ -173,77 +203,56 @@ function showHrTab(tab) {
   if (tab === "courses") renderCourses();
 }
 
-/* ══════════════════════════════════════
-   COURSE MANAGEMENT
-══════════════════════════════════════ */
+/* ── COURSE MANAGEMENT ── */
 function renderCourses() {
   const courses = getCourses();
   const el = document.getElementById("course-list");
-
   if (!courses.length) {
-    el.innerHTML = `<div class="empty-state">
-      <div class="empty-icon"><svg width="22" height="22" fill="none" stroke="#9a9994" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
-      <p>ยังไม่มีหัวข้ออบรม กดปุ่มด้านบนเพื่อเพิ่ม</p></div>`;
+    el.innerHTML = `<div class="empty-state"><p>ยังไม่มีหัวข้ออบรม</p></div>`;
     return;
   }
-
   el.innerHTML = courses.map((c, i) => `
     <div class="course-row ${c.active ? "" : "course-hidden"}">
       <div class="course-left">
         <div class="course-status-dot ${c.active ? "dot-active" : "dot-hidden"}"></div>
         <div>
           <div class="course-name">${c.name}</div>
-          <div class="course-meta">${c.active ? "แสดงให้ผู้อบรมเห็น" : "ซ่อนจากผู้อบรม"}</div>
+          <div class="course-meta">${c.active ? "แสดงให้ผู้อบรมเห็น" : "ซ่อนอยู่"}</div>
         </div>
       </div>
       <div class="course-actions">
-        <button class="btn btn-sm ${c.active ? "btn-warning" : "btn-success-outline"}"
-          onclick="toggleCourse(${i})">
-          ${c.active
-            ? `<svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg> ซ่อน`
-            : `<svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> แสดง`}
-        </button>
-        <button class="btn btn-sm btn-danger-outline" onclick="deleteCourse(${i})">
-          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>
-          ลบ
-        </button>
+        <p style="font-size:11px;color:var(--c-muted)">จัดการผ่าน Google Sheets</p>
       </div>
     </div>`).join("");
 }
 
-function addCourse() {
+async function addCourse() {
   const input = document.getElementById("new-course-input");
   const name  = input.value.trim();
   if (!name) { input.focus(); return; }
+
   const courses = getCourses();
   if (courses.find(c => c.name === name)) { alert("มีหัวข้อนี้อยู่แล้ว"); return; }
-  courses.push({ name, active: true });
-  saveCourses(courses);
-  input.value = "";
-  renderCourses();
-  populateCourseSelect();
+
+  input.disabled = true;
+  try {
+    // ส่ง Action ไปที่ Google Sheets เพื่อเพิ่มหัวข้อ
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify({ action: "addCourse", name: name })
+    });
+    input.value = "";
+    await loadCloudData(); // โหลดข้อมูลที่อัปเดตแล้วกลับมา
+    alert("เพิ่มหัวข้ออบรมสำเร็จ เครื่องอื่นจะเห็นข้อมูลนี้ทันที");
+  } catch (e) {
+    alert("เกิดข้อผิดพลาดในการเชื่อมต่อ Cloud");
+  } finally {
+    input.disabled = false;
+  }
 }
 
-function toggleCourse(i) {
-  const courses = getCourses();
-  courses[i].active = !courses[i].active;
-  saveCourses(courses);
-  renderCourses();
-  populateCourseSelect();
-}
-
-function deleteCourse(i) {
-  const courses = getCourses();
-  if (!confirm(`ลบหัวข้อ "${courses[i].name}" ?\nข้อมูลการลงชื่อที่ผ่านมาจะยังอยู่`)) return;
-  courses.splice(i, 1);
-  saveCourses(courses);
-  renderCourses();
-  populateCourseSelect();
-}
-
-/* ══════════════════════════════════════
-   DASHBOARD (รายชื่อ)
-══════════════════════════════════════ */
+/* ── DASHBOARD (รายชื่อ) ── */
 function renderDashboard() {
   const data    = getData();
   const dates   = [...new Set(data.map(r => r.dateSort))].sort().reverse();
@@ -263,22 +272,12 @@ function renderDashboard() {
       `<button class="sheet-tab ${d === activeDate ? "active" : ""}" onclick="selectDate('${d}')">${toShortThai(d)}</button>`
     ).join("");
 
-  const dayData    = data.filter(r => r.dateSort === activeDate);
-  const dayCourses = [...new Set(dayData.map(r => r.course))].sort();
-  const fc = document.getElementById("filter-course");
-  const savedC = fc.value;
-  fc.innerHTML = '<option value="">ทุกหลักสูตร</option>' +
-    dayCourses.map(c => `<option value="${c}" ${savedC===c?"selected":""}>${c}</option>`).join("");
-
   renderList();
 }
 
 function selectDate(d) {
   activeDate = d;
-  document.querySelectorAll(".sheet-tab").forEach(t => t.classList.remove("active"));
-  event.target.classList.add("active");
-  document.getElementById("filter-course").value = "";
-  renderList();
+  renderDashboard();
 }
 
 function renderList() {
@@ -295,9 +294,7 @@ function renderList() {
 
   const el = document.getElementById("list-container");
   if (!filtered.length) {
-    el.innerHTML = `<div class="empty-state">
-      <div class="empty-icon"><svg width="22" height="22" fill="none" stroke="#9a9994" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-      <p>${activeDate ? "ยังไม่มีข้อมูลในวันนี้" : "ยังไม่มีข้อมูล"}</p></div>`;
+    el.innerHTML = `<div class="empty-state"><p>ไม่พบรายชื่อในวันที่เลือก</p></div>`;
     return;
   }
 
@@ -310,53 +307,55 @@ function renderList() {
         <div class="row-course">${r.course}</div>
       </div>
       <div class="row-meta">
-        <div class="row-date">${r.dateDisplay || r.date || ""}</div>
-        <div class="row-time">${r.time} น.</div>
-        <button class="btn btn-danger-outline btn-sm" style="margin-top:6px;padding:4px 10px;font-size:11px"
-          onclick="deleteRecord(${r.id})">ลบ</button>
+        <div class="row-date">${toShortThai(r.dateSort)}</div>
+        <div class="row-time">${r.time || "--:--"} น.</div>
       </div>
     </div>`).join("");
 }
 
-function deleteRecord(id) {
-  if (!confirm("ลบรายการนี้?")) return;
-  saveData(getData().filter(r => r.id !== id));
-  renderDashboard();
-}
-function clearDateData() {
-  if (!activeDate) return;
-  if (!confirm("ล้างข้อมูลทั้งหมดของวัน " + toShortThai(activeDate) + "?\nไม่สามารถย้อนกลับได้")) return;
-  saveData(getData().filter(r => r.dateSort !== activeDate));
-  activeDate = "";
-  renderDashboard();
-}
-
-/* ── EXPORT EXCEL ── */
+/* ── EXPORT EXCEL (ปรับปรุงตารางตาม Requirement) ── */
 function exportExcel() {
   const data = getData().filter(r => r.dateSort === activeDate);
   if (!data.length) { alert("ไม่มีข้อมูลในวันที่นี้"); return; }
-  const fc = document.getElementById("filter-course").value;
+  
   const q  = (document.getElementById("search-input").value || "").toLowerCase();
+  const fc = document.getElementById("filter-course").value;
+  
   const filtered = data.filter(r => {
     if (fc && r.course !== fc) return false;
     if (q  && !r.name.toLowerCase().includes(q) && !r.dept.toLowerCase().includes(q)) return false;
     return true;
   }).reverse();
 
-  const rows = filtered.map((r,i) => ({
-    "ลำดับ":               i+1,
-    "ชื่อ-นามสกุล":        r.name,
-    "แผนก / หน่วยงาน":    r.dept,
-    "ตำแหน่ง":             r.position || "",
+  // สร้างตารางข้อมูลตามหัวข้อที่ต้องการ
+  const rows = filtered.map((r, i) => ({
+    "ลำดับ": i + 1,
+    "ชื่อ-นามสกุล": r.name,
+    "แผนก / หน่วยงาน": r.dept,
+    "ตำแหน่ง": r.position || "-",
     "หลักสูตร / การอบรม": r.course,
-    "เบอร์โทรศัพท์":      r.tel || "",
-    "วันที่อบรม":          toFullThai(r.dateSort),
-    "เวลาลงชื่อ":          r.time
+    "เบอร์โทรศัพท์": r.tel || "-",
+    "วันที่": toFullThai(r.dateSort),
+    "เวลา": r.time || "-"
   }));
 
   const ws = XLSX.utils.json_to_sheet(rows);
-  ws["!cols"] = [{wch:6},{wch:24},{wch:22},{wch:18},{wch:30},{wch:16},{wch:16},{wch:10}];
+  
+  // กำหนดความกว้างคอลัมน์
+  ws["!cols"] = [
+    {wch: 8},  // ลำดับ
+    {wch: 25}, // ชื่อ
+    {wch: 25}, // แผนก
+    {wch: 20}, // ตำแหน่ง
+    {wch: 35}, // หลักสูตร
+    {wch: 15}, // เบอร์โทร
+    {wch: 15}, // วันที่
+    {wch: 10}  // เวลา
+  ];
+
   const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, toSheetName(activeDate));
-  XLSX.writeFile(wb, "CHEMEMAN_" + (activeDate||"all").replace(/-/g,"") + ".xlsx");
+  XLSX.utils.book_append_sheet(wb, ws, "รายชื่อผู้เข้าอบรม");
+  
+  const fileName = "CHEMEMAN_Attendance_" + activeDate.replace(/-/g, "") + ".xlsx";
+  XLSX.writeFile(wb, fileName);
 }
