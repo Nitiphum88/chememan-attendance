@@ -1,8 +1,3 @@
-// ============================================================
-//  CHEMEMAN Training Attendance System — app.js
-//  แก้ไข SCRIPT_URL ด้านล่างให้ตรงกับ Google Apps Script ของคุณ
-// ============================================================
-
 const SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
 const PIN_KEY    = "cman_pin_v5";
 const DATA_KEY   = "cman_data_v5";
@@ -478,10 +473,6 @@ function confirmDeleteCourse(i) {
   });
 }
 
-// ══════════════════════════════════════════════
-//  EXPORT EXCEL  — ตรงตามแบบ "ใบลงทะเบียนการฝึกอบรม"
-//  คอลัมน์: ลำดับ | รหัสพนักงาน | ชื่อ-นามสกุล | ตำแหน่ง | หน่วยงาน | ลายมือชื่อเข้า | ลายมือชื่อออก
-// ══════════════════════════════════════════════
 function exportExcel() {
   const allData = getData();
   if (!activeDate) { showToast("กรุณาเลือกวันที่ก่อน", "error"); return; }
