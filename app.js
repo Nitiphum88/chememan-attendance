@@ -154,7 +154,10 @@ function populateCourseSelect() {
 function syncCoursesToCloud() {
   return fetch(SCRIPT_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    // ของใหม่ (เพื่อให้ Google ยอมรับได้ง่ายขึ้น)
+    mode: "no-cors", 
+    // หรือถ้าต้องการรับค่าตอบกลับ ให้ใช้:
+    headers: { "Content-Type": "text/plain" }, 
     body: JSON.stringify({ action: "saveCourses", courses: cloudCourses })
   }).then(r => r.json());
 }
