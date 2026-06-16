@@ -5,7 +5,7 @@
    - สร้างหัวข้อ → sync Sheets อัตโนมัติ
    ============================================================ */
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyl48Wi5UWd0-opSZHHFN_nc_B1ovE23rnyaJcmHRYLOhnM7QfeNh71FqJFMnPrfZxd/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxCFIZflvd11PGl3UqdvGmO8luv2iu20iPm-McoaCZZcgHxmCNF8DCo5jTLu9BU9-OG/exec";
 const PIN_KEY    = "cman_pin_v4";
 const DATA_KEY   = "cman_data_v4";
 
