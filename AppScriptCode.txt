@@ -1,0 +1,149 @@
+// ============================================================
+//  CHEMEMAN Training Attendance System — Google Apps Script v3
+//  วางโค้ดนี้ใน Apps Script แทนของเดิมทั้งหมด แล้ว Deploy ใหม่
+// ============================================================
+
+const SS = SpreadsheetApp.getActiveSpreadsheet();
+
+// ── Sheet names ──
+const SHEET_COURSES = "หัวข้ออบรม";   // เก็บรายการหัวข้อ (sync ข้ามเครื่อง)
+
+// ── doGet: ดึงข้อมูล (หัวข้ออบรม) ──
+function doGet(e) {
+  const action = e && e.parameter && e.parameter.action;
+
+  if (action === "getCourses") {
+    const sheet  = getOrCreateCourseSheet();
+    const data   = sheet.getDataRange().getValues();
+    const courses = [];
+    for (let i = 1; i < data.length; i++) {
+      if (data[i][0]) {
+        courses.push({ name: String(data[i][0]), active: data[i][1] !== false && data[i][1] !== "false" && data[i][1] !== 0 });
+      }
+    }
+    return jsonResponse({ status: "ok", courses });
+  }
+
+  return jsonResponse({ status: "ok", message: "CHEMEMAN API ready" });
+}
+
+// ── doPost: รับข้อมูล (ลงชื่อ / จัดการหัวข้อ) ──
+function doPost(e) {
+  try {
+    const body = JSON.parse(e.postData.contents);
+    const action = body.action || "attendance";
+
+    if (action === "saveCourses") {
+      return saveCourses(body.courses || []);
+    }
+
+    // default: บันทึกการลงชื่อ
+    return saveAttendance(body);
+
+  } catch(err) {
+    return jsonResponse({ status: "error", message: err.toString() });
+  }
+}
+
+// ── บันทึกการลงชื่อแยก Sheet ตามวันที่ ──
+function saveAttendance(data) {
+  const trainingDate = data.trainingDate || "";
+  const sheetName   = getSheetNameByDate(trainingDate);
+  let sheet = SS.getSheetByName(sheetName);
+
+  if (!sheet) {
+    sheet = SS.insertSheet(sheetName);
+    setupAttendanceHeader(sheet);
+    SS.setActiveSheet(sheet);
+    SS.moveActiveSheet(1);
+  }
+
+  const now    = new Date();
+  const thTime = Utilities.formatDate(now, "Asia/Bangkok", "HH:mm");
+  const rowNum = Math.max(sheet.getLastRow(), 1);
+
+  sheet.appendRow([
+    rowNum,
+    data.name     || "",
+    data.dept     || "",
+    data.position || "",
+    data.course   || "",
+    data.tel      || "",
+    formatThaiDate(trainingDate),
+    thTime
+  ]);
+
+  return jsonResponse({ status: "ok", name: data.name, sheet: sheetName });
+}
+
+// ── บันทึก/อัปเดตรายการหัวข้ออบรม ──
+function saveCourses(courses) {
+  const sheet = getOrCreateCourseSheet();
+  // ล้างข้อมูลเดิม (เก็บ header)
+  const lastRow = sheet.getLastRow();
+  if (lastRow > 1) sheet.getRange(2, 1, lastRow - 1, 2).clearContent();
+
+  // เขียนใหม่
+  if (courses.length > 0) {
+    const rows = courses.map(c => [c.name, c.active ? true : false]);
+    sheet.getRange(2, 1, rows.length, 2).setValues(rows);
+  }
+
+  return jsonResponse({ status: "ok", saved: courses.length });
+}
+
+// ── Helper: สร้าง/ดึง Sheet หัวข้ออบรม ──
+function getOrCreateCourseSheet() {
+  let sheet = SS.getSheetByName(SHEET_COURSES);
+  if (!sheet) {
+    sheet = SS.insertSheet(SHEET_COURSES);
+    sheet.appendRow(["ชื่อหัวข้ออบรม", "แสดง (true/false)"]);
+    sheet.getRange(1, 1, 1, 2).setFontWeight("bold").setBackground("#1e5c2a").setFontColor("#ffffff");
+    sheet.setColumnWidth(1, 260);
+    sheet.setColumnWidth(2, 140);
+  }
+  return sheet;
+}
+
+// ── Helper: ชื่อ Sheet จากวันที่ ──
+function getSheetNameByDate(dateStr) {
+  if (!dateStr) return "อบรม (ไม่ระบุวัน)";
+  const d  = new Date(dateStr + "T00:00:00");
+  const dd = String(d.getDate()).padStart(2, "0");
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const yy = String(d.getFullYear() + 543).slice(-2);
+  return "อบรม " + dd + "/" + mm + "/" + yy;
+}
+
+// ── Helper: แปลงวันที่เป็น dd/mm/yy (พ.ศ.) ──
+function formatThaiDate(dateStr) {
+  if (!dateStr) return "";
+  const d  = new Date(dateStr + "T00:00:00");
+  const dd = String(d.getDate()).padStart(2, "0");
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const yy = String(d.getFullYear() + 543).slice(-2);
+  return dd + "/" + mm + "/" + yy;
+}
+
+// ── Helper: ตั้งค่า Header ของ Sheet ลงชื่อ ──
+function setupAttendanceHeader(sheet) {
+  const headers = ["ลำดับ","ชื่อ-นามสกุล","แผนก / หน่วยงาน","ตำแหน่ง","หัวข้ออบรม","เบอร์โทรศัพท์","วันที่อบรม","เวลาลงชื่อ"];
+  sheet.appendRow(headers);
+  sheet.getRange(1, 1, 1, headers.length)
+       .setFontWeight("bold").setBackground("#1e5c2a").setFontColor("#ffffff").setHorizontalAlignment("center");
+  sheet.setFrozenRows(1);
+  [60,180,160,140,220,130,100,90].forEach((w,i) => sheet.setColumnWidth(i+1, w));
+}
+
+// ── Helper: JSON Response ──
+function jsonResponse(obj) {
+  return ContentService
+    .createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// ── ทดสอบ: รันใน Apps Script Editor ──
+function testSetup() {
+  getOrCreateCourseSheet();
+  SpreadsheetApp.getUi().alert("ตั้งค่าเรียบร้อย! Sheet 'หัวข้ออบรม' พร้อมใช้งาน");
+}
