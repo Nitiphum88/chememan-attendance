@@ -1,0 +1,234 @@
+// ================================================================
+//  CHEMEMAN Training Attendance System — Google Apps Script v4
+//  วางโค้ดนี้ใน Apps Script แทนของเดิมทั้งหมด แล้ว Deploy ใหม่
+//  ตั้งค่า: Deploy → New deployment → Web app → Anyone → Deploy
+// ================================================================
+
+const SS = SpreadsheetApp.getActiveSpreadsheet();
+const SHEET_COURSES = "หัวข้ออบรม";
+
+// ── doGet: ดึงข้อมูล ──────────────────────────────────────────
+function doGet(e) {
+  const action = (e && e.parameter && e.parameter.action) || "";
+  if (action === "getCourses") {
+    const sheet = getOrCreateCourseSheet();
+    const data  = sheet.getDataRange().getValues();
+    const courses = [];
+    for (let i = 1; i < data.length; i++) {
+      if (!data[i][0]) continue;
+      courses.push({
+        name:       String(data[i][0]),
+        active:     data[i][1] !== false && data[i][1] !== "false" && data[i][1] !== 0,
+        // รายละเอียดสำหรับ header ของ Excel
+        date:       String(data[i][2] || ""),
+        time:       String(data[i][3] || "08.00-17.00น."),
+        location:   String(data[i][4] || ""),
+        instructor: String(data[i][5] || "วิทยากรภายใน บริษัท เคมีแมน จำกัด (มหาชน)"),
+        type:       String(data[i][6] || "พนักงาน"), // พนักงาน / ฝึกงาน
+      });
+    }
+    return jsonResponse({ status: "ok", courses });
+  }
+  return jsonResponse({ status: "ok", message: "CHEMEMAN API v4 ready" });
+}
+
+// ── doPost: รับข้อมูล ─────────────────────────────────────────
+function doPost(e) {
+  try {
+    const body   = JSON.parse(e.postData.contents);
+    const action = body.action || "attendance";
+    if (action === "saveCourses") return saveCourses(body.courses || []);
+    return saveAttendance(body);
+  } catch(err) {
+    return jsonResponse({ status: "error", message: err.toString() });
+  }
+}
+
+// ── บันทึกการลงชื่อ ───────────────────────────────────────────
+function saveAttendance(data) {
+  const trainingDate = data.trainingDate || "";
+  const sheetName   = getSheetNameByDate(trainingDate, data.course);
+  let sheet = SS.getSheetByName(sheetName);
+  if (!sheet) {
+    sheet = SS.insertSheet(sheetName);
+    setupAttendanceHeader(sheet, data);
+    SS.setActiveSheet(sheet);
+    SS.moveActiveSheet(1);
+  }
+
+  // นับลำดับจากแถวข้อมูล (เริ่มแถวที่ 8)
+  const lastRow = sheet.getLastRow();
+  const rowNum  = lastRow >= 8 ? lastRow - 6 : 1;
+
+  const now    = new Date();
+  const thTime = Utilities.formatDate(now, "Asia/Bangkok", "HH:mm");
+  const dd     = formatThaiDate(trainingDate);
+
+  sheet.appendRow([
+    rowNum,
+    data.empCode   || "",
+    data.idCard    || "",
+    data.prefix    || "",
+    data.firstName || "",
+    data.lastName  || "",
+    data.position  || "",
+    data.dept      || "",
+    "",   // ลายมือชื่อ เช้า (เว้นว่าง)
+    "",   // ลายมือชื่อ บ่าย (เว้นว่าง)
+    "",   // หมายเหตุ
+    data.site      || "",  // สถานที่สังกัด (KK/BKK/TK/RY/PBB)
+  ]);
+
+  return jsonResponse({ status: "ok", name: (data.prefix||"")+(data.firstName||"")+" "+(data.lastName||""), sheet: sheetName });
+}
+
+// ── บันทึก/อัปเดตหัวข้ออบรม ──────────────────────────────────
+function saveCourses(courses) {
+  const sheet   = getOrCreateCourseSheet();
+  const lastRow = sheet.getLastRow();
+  if (lastRow > 1) sheet.getRange(2, 1, lastRow - 1, 7).clearContent();
+  if (courses.length > 0) {
+    const rows = courses.map(c => [
+      c.name, c.active ? true : false,
+      c.date || "", c.time || "08.00-17.00น.",
+      c.location || "", c.instructor || "วิทยากรภายใน บริษัท เคมีแมน จำกัด (มหาชน)",
+      c.type || "พนักงาน"
+    ]);
+    sheet.getRange(2, 1, rows.length, 7).setValues(rows);
+  }
+  return jsonResponse({ status: "ok", saved: courses.length });
+}
+
+// ── Helper: Sheet หัวข้ออบรม ──────────────────────────────────
+function getOrCreateCourseSheet() {
+  let sheet = SS.getSheetByName(SHEET_COURSES);
+  if (!sheet) {
+    sheet = SS.insertSheet(SHEET_COURSES);
+    const headers = ["ชื่อหัวข้ออบรม","แสดง","วันที่อบรม","เวลา","สถานที่","วิทยากร","ประเภท"];
+    sheet.appendRow(headers);
+    sheet.getRange(1,1,1,7).setFontWeight("bold").setBackground("#1B5E2B").setFontColor("#ffffff");
+    [220,80,120,120,160,240,100].forEach((w,i) => sheet.setColumnWidth(i+1, w));
+  }
+  return sheet;
+}
+
+// ── Helper: ตั้ง Header ของ Sheet ลงชื่อ ─────────────────────
+function setupAttendanceHeader(sheet, data) {
+  const courseName = data.course   || "";
+  const dateStr    = formatThaiDate(data.trainingDate || "");
+  const timeStr    = data.time     || "08.00-17.00น.";
+  const location   = data.location || "";
+  const instructor = data.instructor || "วิทยากรภายใน บริษัท เคมีแมน จำกัด (มหาชน)";
+
+  // แถว 1-4: ข้อมูล header
+  sheet.getRange("A1").setValue("ใบลงทะเบียนการฝึกอบรม");
+  sheet.getRange("L1").setValue("KK =");
+  sheet.getRange("M1").setFormula('=COUNTIF(L8:L207,"KK")');
+  sheet.getRange("N1").setValue("ชาย =");
+  sheet.getRange("O1").setFormula('=COUNTIF(D8:D207,"นาย")');
+
+  sheet.getRange("A2").setValue("หลักสูตร " + courseName);
+  sheet.getRange("L2").setValue("BKK =");
+  sheet.getRange("M2").setFormula('=COUNTIF(L8:L207,"BKK")');
+  sheet.getRange("N2").setValue("หญิง =");
+  sheet.getRange("O2").setFormula('=SUM(COUNTIF(D8:D207,"นาง"),COUNTIF(D8:D207,"น.ส."))');
+
+  sheet.getRange("A3").setValue("วันที่ " + dateStr + "  เวลา " + timeStr + "  สถานที่อบรม  " + location);
+  sheet.getRange("L3").setValue("TK =");
+  sheet.getRange("M3").setFormula('=COUNTIF(L8:L207,"TK")');
+
+  sheet.getRange("A4").setValue("โดย  " + instructor);
+  sheet.getRange("L4").setValue("RY =");
+  sheet.getRange("M4").setFormula('=COUNTIF(L8:L207,"RY")');
+
+  // แถว 5-6: header ตาราง
+  // แถว 5
+  sheet.getRange("A5").setValue("ลำดับ");
+  sheet.getRange("B5").setValue("รหัสพนักงาน");
+  sheet.getRange("C5").setValue("ID");
+  sheet.getRange("D5").setValue("ชื่อ - นามสกุล");
+  sheet.getRange("G5").setValue("ตำแหน่ง");
+  sheet.getRange("H5").setValue("หน่วยงาน");
+  sheet.getRange("I5").setValue("ลายมือชื่อ");
+  sheet.getRange("L5").setValue("PBB =");
+  sheet.getRange("M5").setFormula('=COUNTIF(L8:L207,"PBB")');
+  sheet.getRange("N5").setFormula('=SUM(M1:M5)');
+
+  // แถว 6
+  sheet.getRange("I6").setValue("เช้า");
+  sheet.getRange("J6").setValue("บ่าย");
+
+  // Merge cells
+  sheet.getRange("A1:J1").merge();
+  sheet.getRange("A2:J2").merge();
+  sheet.getRange("A3:J3").merge();
+  sheet.getRange("A4:J4").merge();
+  sheet.getRange("A5:A6").merge();
+  sheet.getRange("B5:B6").merge();
+  sheet.getRange("C5:C6").merge();
+  sheet.getRange("D5:F5").merge();
+  sheet.getRange("G5:G6").merge();
+  sheet.getRange("H5:H6").merge();
+  sheet.getRange("I5:K5").merge();
+  sheet.getRange("D6:F6").merge();
+
+  // Style header rows
+  const boldFont = SpreadsheetApp.newTextStyle().setBold(true).build();
+  ["A1","A2","A3","A4"].forEach(c => {
+    sheet.getRange(c).setTextStyle(boldFont).setFontSize(12);
+  });
+  sheet.getRange("A1:O6").setFontName("TH SarabunPSK");
+
+  // Header row 5-6 style
+  const hStyle = sheet.getRange("A5:K6");
+  hStyle.setBackground("#1B5E2B").setFontColor("#FFFFFF").setFontWeight("bold")
+        .setHorizontalAlignment("center").setVerticalAlignment("middle");
+
+  // Column widths
+  sheet.setColumnWidth(1, 55);   // A: ลำดับ
+  sheet.setColumnWidth(2, 90);   // B: รหัส
+  sheet.setColumnWidth(3, 100);  // C: ID
+  sheet.setColumnWidth(4, 50);   // D: คำนำหน้า
+  sheet.setColumnWidth(5, 130);  // E: ชื่อ
+  sheet.setColumnWidth(6, 130);  // F: นามสกุล
+  sheet.setColumnWidth(7, 140);  // G: ตำแหน่ง
+  sheet.setColumnWidth(8, 130);  // H: หน่วยงาน
+  sheet.setColumnWidth(9, 130);  // I: ลายมือเช้า
+  sheet.setColumnWidth(10, 130); // J: ลายมือบ่าย
+  sheet.setColumnWidth(11, 80);  // K: หมายเหตุ
+  sheet.setColumnWidth(12, 60);  // L: สังกัด
+
+  sheet.setFrozenRows(7);
+}
+
+// ── Helper: ชื่อ Sheet ────────────────────────────────────────
+function getSheetNameByDate(dateStr, course) {
+  if (!dateStr) return (course || "อบรม") + " (ไม่ระบุวัน)";
+  const d  = new Date(dateStr + "T00:00:00");
+  const dd = String(d.getDate()).padStart(2,"0");
+  const mm = String(d.getMonth()+1).padStart(2,"0");
+  const yy = String(d.getFullYear()+543).slice(-2);
+  const shortCourse = (course || "อบรม").substring(0, 20);
+  return shortCourse + " " + dd + "/" + mm + "/" + yy;
+}
+
+// ── Helper: วันที่ไทย ─────────────────────────────────────────
+function formatThaiDate(dateStr) {
+  if (!dateStr) return "";
+  const d = new Date(dateStr + "T00:00:00");
+  const months = ["","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน",
+                  "กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
+  return d.getDate() + " " + months[d.getMonth()+1] + " " + (d.getFullYear()+543);
+}
+
+// ── Helper: JSON Response ─────────────────────────────────────
+function jsonResponse(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// ── ทดสอบ ────────────────────────────────────────────────────
+function testSetup() {
+  getOrCreateCourseSheet();
+  SpreadsheetApp.getUi().alert("✅ ตั้งค่าเรียบร้อย! พร้อมใช้งาน");
+}
