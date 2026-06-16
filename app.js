@@ -1,34 +1,20 @@
-/* ============================================================
-   CHEMEMAN Training Attendance System — app.js v5
-   - ไม่มี alert/confirm/prompt ของ browser เลย
-   - ใช้ modal สวยงามแทนทั้งหมด
-   - สร้างหัวข้อ → sync Sheets อัตโนมัติ
-   ============================================================ */
-
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5hWkCyq_y0Njr9dEKn6ymlb9wjJEvEMI0lHb8aRaabHCIjymzO3-hYBU91YcbRq6K/exec";
 const PIN_KEY    = "cman_pin_v4";
 const DATA_KEY   = "cman_data_v4";
-
 let hrUnlocked   = false;
 let activeDate   = "";
 let cloudCourses = [];
 
-/* ── STORAGE ── */
 function getPin()    { return localStorage.getItem(PIN_KEY) || "1234"; }
 function savePin(p)  { localStorage.setItem(PIN_KEY, p); }
 function getData()   { try { return JSON.parse(localStorage.getItem(DATA_KEY) || "[]"); } catch(e) { return []; } }
 function saveData(d) { localStorage.setItem(DATA_KEY, JSON.stringify(d)); }
 
-/* ══════════════════════════════════════════════
-   MODAL SYSTEM (แทน alert/confirm/prompt)
-══════════════════════════════════════════════ */
 function showModal(opts) {
-  /* opts: { type, title, message, icon, confirmText, cancelText, inputPlaceholder, onConfirm, onCancel } */
   const m = document.getElementById("modal");
   document.getElementById("modal-icon").innerHTML   = opts.icon || "";
   document.getElementById("modal-title").textContent = opts.title || "";
   document.getElementById("modal-msg").innerHTML     = opts.message || "";
-
   const inputWrap = document.getElementById("modal-input-wrap");
   const inputEl   = document.getElementById("modal-input");
   if (opts.inputPlaceholder !== undefined) {
@@ -42,18 +28,14 @@ function showModal(opts) {
     inputWrap.style.display = "none";
     inputEl.value           = "";
   }
-
   const confirmBtn = document.getElementById("modal-confirm");
   const cancelBtn  = document.getElementById("modal-cancel");
-
   confirmBtn.textContent  = opts.confirmText || "ตกลง";
   confirmBtn.className    = "modal-btn " + (opts.confirmClass || "modal-btn-primary");
   cancelBtn.style.display = opts.cancelText ? "" : "none";
   cancelBtn.textContent   = opts.cancelText || "ยกเลิก";
-
   window._modalConfirm = opts.onConfirm || null;
   window._modalCancel  = opts.onCancel  || null;
-
   m.classList.add("open");
   document.getElementById("modal-confirm").focus();
 }
@@ -63,15 +45,16 @@ function confirmModal() {
   closeModal();
   if (window._modalConfirm) window._modalConfirm(val);
 }
+
 function cancelModal() {
   closeModal();
   if (window._modalCancel) window._modalCancel();
 }
+
 function closeModal() {
   document.getElementById("modal").classList.remove("open");
 }
 
-/* ── TOAST ── */
 let _toastTimer;
 function showToast(msg, type) {
   const t  = document.getElementById("toast");
@@ -89,30 +72,32 @@ function showToast(msg, type) {
   clearTimeout(_toastTimer);
   if (type !== "loading") _toastTimer = setTimeout(() => t.classList.remove("show"), 3000);
 }
+
 function hideToast() { document.getElementById("toast").classList.remove("show"); }
 
-/* ── DATE HELPERS ── */
 function todayISO() {
   const t = new Date();
   return t.getFullYear() + "-" + String(t.getMonth()+1).padStart(2,"0") + "-" + String(t.getDate()).padStart(2,"0");
 }
+
 function toShortThai(ds) {
   if (!ds) return "";
   const d = new Date(ds + "T00:00:00");
   return String(d.getDate()).padStart(2,"0") + "/" + String(d.getMonth()+1).padStart(2,"0") + "/" + String(d.getFullYear()+543).slice(-2);
 }
+
 function toFullThai(ds) {
   if (!ds) return "";
   const d = new Date(ds + "T00:00:00");
   return String(d.getDate()).padStart(2,"0") + "/" + String(d.getMonth()+1).padStart(2,"0") + "/" + (d.getFullYear()+543);
 }
+
 function toSheetName(ds) {
   if (!ds) return "ไม่ระบุวัน";
   const d = new Date(ds + "T00:00:00");
   return "อบรม " + String(d.getDate()).padStart(2,"0") + "/" + String(d.getMonth()+1).padStart(2,"0") + "/" + String(d.getFullYear()+543).slice(-2);
 }
 
-/* ── PAGE SWITCH ── */
 function switchPage(p) {
   document.querySelectorAll(".page").forEach(el => el.classList.remove("active"));
   document.querySelectorAll(".nav-tab").forEach(el => el.classList.remove("active"));
@@ -122,9 +107,6 @@ function switchPage(p) {
   if (p === "sign") loadAndPopulateCourses();
 }
 
-/* ══════════════════════════════════════════════
-   COURSE SYNC
-══════════════════════════════════════════════ */
 function loadAndPopulateCourses() {
   const sel       = document.getElementById("s-course");
   sel.innerHTML   = '<option value="">กำลังโหลดหัวข้ออบรม...</option>';
@@ -154,23 +136,16 @@ function populateCourseSelect() {
 function syncCoursesToCloud() {
   return fetch(SCRIPT_URL, {
     method: "POST",
-    // ของใหม่ (เพื่อให้ Google ยอมรับได้ง่ายขึ้น)
-    mode: "no-cors", 
-    // หรือถ้าต้องการรับค่าตอบกลับ ให้ใช้:
-    headers: { "Content-Type": "text/plain" }, 
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
     body: JSON.stringify({ action: "saveCourses", courses: cloudCourses })
   }).then(r => r.json());
 }
 
-/* ── INIT ── */
 window.addEventListener("load", () => {
   document.getElementById("s-date").value = todayISO();
   loadAndPopulateCourses();
 });
 
-/* ══════════════════════════════════════════════
-   FORM SUBMIT
-══════════════════════════════════════════════ */
 function showFormError(msg) {
   const el = document.getElementById("error-msg");
   document.getElementById("error-text").textContent = msg;
@@ -186,25 +161,21 @@ function submitForm() {
   const pos    = document.getElementById("s-position").value.trim();
   const course = document.getElementById("s-course").value;
   const tel    = document.getElementById("s-tel").value.trim();
-
   if (!date)   { showFormError("กรุณาเลือกวันที่อบรม");      return; }
   if (!name)   { showFormError("กรุณากรอกชื่อ-นามสกุล");     document.getElementById("s-name").focus();   return; }
   if (!dept)   { showFormError("กรุณากรอกแผนก / หน่วยงาน");  document.getElementById("s-dept").focus();   return; }
   if (!course) { showFormError("กรุณาเลือกหัวข้ออบรม");       document.getElementById("s-course").focus(); return; }
-
   const btn = document.getElementById("btn-submit");
   btn.disabled = true;
   document.getElementById("loading-bar").style.display = "block";
-
   const now = new Date(), pad = n => String(n).padStart(2,"0");
   const rec = { id: Date.now(), name, dept, position: pos, course, tel,
     trainingDate: date, dateDisplay: toShortThai(date),
     time: pad(now.getHours()) + ":" + pad(now.getMinutes()), dateSort: date };
   saveData([...getData(), rec]);
-
   fetch(SCRIPT_URL, {
-    method: "POST", mode: "no-cors",
-    headers: { "Content-Type": "application/json" },
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
     body: JSON.stringify({ action: "attendance", name, dept, position: pos, course, tel, trainingDate: date })
   }).finally(() => {
     document.getElementById("success-name").textContent   = name;
@@ -227,9 +198,6 @@ function resetForm() {
   document.getElementById("s-name").focus();
 }
 
-/* ══════════════════════════════════════════════
-   PIN
-══════════════════════════════════════════════ */
 function checkPin() {
   if (document.getElementById("pin-input").value === getPin()) {
     hrUnlocked = true;
@@ -263,9 +231,6 @@ function changePin() {
   });
 }
 
-/* ══════════════════════════════════════════════
-   HR SUB-TABS
-══════════════════════════════════════════════ */
 function showHrTab(tab) {
   ["list","courses"].forEach(t => {
     document.getElementById("hrtab-" + t).classList.toggle("active", t === tab);
@@ -275,15 +240,11 @@ function showHrTab(tab) {
   if (tab === "courses") loadCourseManager();
 }
 
-/* ══════════════════════════════════════════════
-   COURSE MANAGER
-══════════════════════════════════════════════ */
 function loadCourseManager() {
   const el = document.getElementById("course-list");
   el.innerHTML = `<div class="empty-state"><div class="empty-icon spin-icon">
     <svg width="20" height="20" fill="none" stroke="#1B5E2B" stroke-width="2" viewBox="0 0 24 24" class="spin"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
     </div><p>กำลังโหลด...</p></div>`;
-
   fetch(SCRIPT_URL + "?action=getCourses&t=" + Date.now())
     .then(r => r.json())
     .then(data => { cloudCourses = data.courses || []; renderCourseManager(); })
@@ -343,12 +304,10 @@ function addCourse() {
     });
     return;
   }
-
   cloudCourses.push({ name, active: true });
   input.value = "";
   renderCourseManager();
   showToast("กำลังบันทึก...", "loading");
-
   syncCoursesToCloud()
     .then(() => { showToast(`เพิ่ม "${name}" เรียบร้อย`, "success"); populateCourseSelect(); })
     .catch(() => {
@@ -364,7 +323,6 @@ function toggleCourse(i) {
   c.active   = next;
   renderCourseManager();
   showToast("กำลังบันทึก...", "loading");
-
   syncCoursesToCloud()
     .then(() => {
       showToast(next ? `แสดง "${c.name}" แล้ว` : `ซ่อน "${c.name}" แล้ว`, "success");
@@ -397,26 +355,20 @@ function confirmDeleteCourse(i) {
   });
 }
 
-/* ══════════════════════════════════════════════
-   DASHBOARD
-══════════════════════════════════════════════ */
 function renderDashboard() {
   const data    = getData();
   const dates   = [...new Set(data.map(r => r.dateSort))].sort().reverse();
   const courses = [...new Set(data.map(r => r.course))];
   const depts   = [...new Set(data.map(r => r.dept))];
   if (!activeDate || !dates.includes(activeDate)) activeDate = dates[0] || "";
-
   document.getElementById("metrics").innerHTML = `
     <div class="metric-card"><div class="metric-num">${data.length}</div><div class="metric-lbl">ทั้งหมด</div></div>
     <div class="metric-card"><div class="metric-num">${courses.length}</div><div class="metric-lbl">หลักสูตร</div></div>
     <div class="metric-card"><div class="metric-num">${depts.length}</div><div class="metric-lbl">หน่วยงาน</div></div>`;
-
   const tabs = document.getElementById("sheet-tabs");
   tabs.innerHTML = !dates.length
     ? '<span style="font-size:12px;color:#8E9489">ยังไม่มีข้อมูล</span>'
     : dates.map(d => `<button class="sheet-tab ${d===activeDate?"active":""}" onclick="selectDate('${d}')">${toShortThai(d)}</button>`).join("");
-
   const dayData    = data.filter(r => r.dateSort === activeDate);
   const dayCourses = [...new Set(dayData.map(r => r.course))].sort();
   const fc = document.getElementById("filter-course"), sc = fc.value;
@@ -442,7 +394,6 @@ function renderList() {
     if (fc && r.course !== fc) return false;
     return true;
   }).reverse();
-
   const el = document.getElementById("list-container");
   if (!filtered.length) {
     el.innerHTML = `<div class="empty-state">
@@ -497,7 +448,6 @@ function clearDateData() {
   });
 }
 
-/* ── EXPORT ── */
 function exportExcel() {
   const data = getData().filter(r => r.dateSort === activeDate);
   if (!data.length) { showToast("ไม่มีข้อมูลในวันที่นี้", "error"); return; }
