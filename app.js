@@ -3,7 +3,7 @@
 //  แก้ไข SCRIPT_URL ด้านล่างให้ตรงกับ Google Apps Script ของคุณ
 // ============================================================
 
-const SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyBGptzrcCMGrOR_FeCe3pbLFzKbxKnrEWn32qyQPkte2nY6Ss2dcIqtja5RZ8ISGzy/exec";
 const PIN_KEY    = "cman_pin_v5";
 const DATA_KEY   = "cman_data_v5";
 
