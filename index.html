@@ -29,39 +29,34 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
 
 /* ════ HEADER ════ */
 .site-header{
-  background:linear-gradient(135deg,var(--g-d) 0%,var(--g) 60%,var(--g-m) 100%);
-  height:72px;padding:0 24px;display:flex;align-items:center;gap:16px;
+  background:linear-gradient(135deg,var(--g-d) 0%,var(--g) 55%,var(--g-m) 100%);
+  height:70px;padding:0 24px;display:flex;align-items:center;gap:14px;
   position:sticky;top:0;z-index:300;
-  box-shadow:0 2px 16px rgba(27,94,43,.35);
+  box-shadow:0 2px 16px rgba(27,94,43,.38);
 }
-.header-logo-wrap{display:flex;align-items:center;gap:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;flex-shrink:0}
+.header-logo-wrap{display:flex;align-items:center;gap:10px;cursor:pointer;-webkit-tap-highlight-color:transparent;flex-shrink:0}
 .header-logo-box{
-  width:48px;height:48px;background:rgba(255,255,255,.15);border-radius:var(--r10);
+  width:46px;height:46px;background:rgba(255,255,255,.12);border-radius:var(--r10);
   display:flex;align-items:center;justify-content:center;
-  border:1.5px solid rgba(255,255,255,.25);
-  transition:background .2s;
+  border:1.5px solid rgba(255,255,255,.22);transition:background .2s;
 }
-.header-logo-box:hover{background:rgba(255,255,255,.25)}
-.header-logo-box svg{width:28px;height:28px;fill:white}
-.header-sep{width:1px;height:36px;background:rgba(255,255,255,.2);flex-shrink:0}
-.header-info{line-height:1.3;flex:1}
-.header-info strong{display:block;font-size:16px;font-weight:700;color:#fff;letter-spacing:.2px}
-.header-info span{font-size:11px;color:rgba(255,255,255,.7);font-weight:400;letter-spacing:.3px}
+.header-logo-box:hover{background:rgba(255,255,255,.22)}
+.header-sep{width:1px;height:34px;background:rgba(255,255,255,.18);flex-shrink:0}
+.header-info{line-height:1.3;flex:1;min-width:0}
+.header-info strong{display:block;font-size:15.5px;font-weight:700;color:#fff;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.header-info span{font-size:10.5px;color:rgba(255,255,255,.65);font-weight:400;letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
 .header-badge{
-  background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);
-  border-radius:99px;padding:4px 12px;font-size:11px;font-weight:600;color:rgba(255,255,255,.9);
-  white-space:nowrap;display:flex;align-items:center;gap:5px;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);
+  border-radius:99px;padding:4px 11px;font-size:10.5px;font-weight:600;
+  color:rgba(255,255,255,.88);white-space:nowrap;display:flex;align-items:center;gap:5px;flex-shrink:0;
 }
-.badge-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:pulse-dot 2s infinite}
-@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:pulse-dot 2.2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.35}}
 
 /* ════ NAV ════ */
-.nav-bar{
-  background:var(--w);border-bottom:1px solid var(--bd);
-  display:flex;box-shadow:0 1px 0 rgba(0,0,0,.04);
-}
+.nav-bar{background:var(--w);border-bottom:1px solid var(--bd);display:flex;box-shadow:0 1px 0 rgba(0,0,0,.04)}
 .nav-tab{
-  flex:1;padding:14px 8px 12px;font-family:inherit;font-size:13px;font-weight:600;
+  flex:1;padding:13px 8px 11px;font-family:inherit;font-size:13px;font-weight:600;
   color:var(--tm);background:transparent;border:none;border-bottom:3px solid transparent;
   cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;
   white-space:nowrap;transition:color .15s,border-color .15s,background .15s;
@@ -74,60 +69,54 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
 
 /* ════ PAGES ════ */
 .page{display:none}.page.active{display:block}
-.wrap{max-width:600px;margin:0 auto;padding:24px 16px 80px}
+.wrap{max-width:600px;margin:0 auto;padding:22px 16px 80px}
 
-/* ════ HERO BANNER ════ */
+/* ════ HERO ════ */
 .hero-banner{
-  background:linear-gradient(135deg,var(--g-d) 0%,var(--g) 50%,#2D7A3F 100%);
-  border-radius:var(--r18);padding:24px 22px;margin-bottom:18px;
-  position:relative;overflow:hidden;
-  box-shadow:0 4px 20px rgba(27,94,43,.3);
+  background:linear-gradient(135deg,var(--g-d) 0%,var(--g) 52%,var(--g-m) 100%);
+  border-radius:var(--r18);padding:22px 22px 20px;margin-bottom:16px;
+  position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(27,94,43,.28);
 }
-.hero-banner::before{
-  content:'';position:absolute;top:-40px;right:-40px;
-  width:180px;height:180px;border-radius:50%;
-  background:rgba(255,255,255,.06);pointer-events:none;
-}
-.hero-banner::after{
-  content:'';position:absolute;bottom:-60px;right:30px;
-  width:140px;height:140px;border-radius:50%;
-  background:rgba(255,255,255,.04);pointer-events:none;
-}
-.hero-title{font-size:18px;font-weight:700;color:#fff;margin-bottom:4px}
-.hero-sub{font-size:12px;color:rgba(255,255,255,.7)}
-.hero-chips{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.hero-banner::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.05);pointer-events:none}
+.hero-banner::after{content:'';position:absolute;bottom:-70px;right:20px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none}
+.hero-row{display:flex;align-items:flex-start;gap:14px}
+.hero-icon-box{width:46px;height:46px;background:rgba(255,255,255,.15);border-radius:var(--r10);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hero-title{font-size:17px;font-weight:700;color:#fff;margin-bottom:3px;line-height:1.3}
+.hero-sub{font-size:11.5px;color:rgba(255,255,255,.68);line-height:1.5}
+.hero-chips{display:flex;gap:6px;margin-top:13px;flex-wrap:wrap}
 .hero-chip{
-  background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);
-  border-radius:99px;padding:3px 10px;font-size:11px;font-weight:600;
-  color:rgba(255,255,255,.9);display:flex;align-items:center;gap:4px;
+  background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);
+  border-radius:99px;padding:3px 10px;font-size:10.5px;font-weight:600;
+  color:rgba(255,255,255,.88);display:flex;align-items:center;gap:5px;
 }
+.hero-chip svg{opacity:.8}
 
 /* ════ CARD ════ */
 .card{background:var(--w);border-radius:var(--r14);border:1px solid var(--bd);box-shadow:var(--s1);overflow:hidden}
-.card+.card{margin-top:14px}
+.card+.card{margin-top:12px}
 .card-head{
-  padding:20px 22px 16px;
+  padding:18px 20px 14px;
   border-left:4px solid var(--g);
   border-bottom:1px solid var(--bd);
   background:linear-gradient(135deg,var(--g-p) 0%,#fff 100%);
   display:flex;align-items:flex-start;gap:12px;
 }
 .card-head-icon{
-  width:40px;height:40px;background:var(--g);border-radius:var(--r10);
+  width:38px;height:38px;background:var(--g);border-radius:var(--r10);
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  box-shadow:0 2px 8px rgba(27,94,43,.25);
+  box-shadow:0 2px 8px rgba(27,94,43,.22);
 }
-.card-head h2{font-size:16px;font-weight:700;color:var(--g-d);margin-bottom:3px}
-.card-head p{font-size:11.5px;color:var(--ts);line-height:1.5}
-.card-body{padding:22px}
+.card-head h2{font-size:15.5px;font-weight:700;color:var(--g-d);margin-bottom:3px}
+.card-head p{font-size:11px;color:var(--ts);line-height:1.5}
+.card-body{padding:20px}
 
-/* ════ SECTION ════ */
+/* ════ SECTION LABEL ════ */
 .sec-lbl{
   font-size:10px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.8px;
-  margin-bottom:12px;margin-top:4px;display:flex;align-items:center;gap:8px;
+  margin-bottom:12px;margin-top:2px;display:flex;align-items:center;gap:8px;
 }
+.sec-lbl svg{flex-shrink:0;opacity:.6}
 .sec-lbl::after{content:'';flex:1;height:1px;background:var(--bd)}
-.sec-lbl-icon{font-size:12px}
 
 /* ════ FIELDS ════ */
 .field{margin-bottom:0}
@@ -140,7 +129,7 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
 }
 .req{color:var(--r);margin-left:2px}
 .field input,.field select,.field textarea{
-  width:100%;padding:10px 13px;border:1.5px solid var(--bd);border-radius:var(--r6);
+  width:100%;padding:10px 12px;border:1.5px solid var(--bd);border-radius:var(--r6);
   font-family:inherit;font-size:14.5px;color:var(--t);background:var(--w);outline:none;
   transition:border-color .15s,box-shadow .15s,background .15s;
   -webkit-appearance:none;appearance:none;
@@ -150,23 +139,69 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
   background-repeat:no-repeat;background-position:right 11px center;padding-right:30px;
 }
 .field input::placeholder{color:var(--tm)}
-.field input:focus,.field select:focus,.field textarea:focus{
-  border-color:var(--g);box-shadow:0 0 0 3px rgba(27,94,43,.12);background:#fefffe;
+.field input:focus,.field select:focus{
+  border-color:var(--g);box-shadow:0 0 0 3px rgba(27,94,43,.11);background:#fefffe;
 }
-.field input:read-only{background:var(--bg);color:var(--ts);cursor:default}
+.field input[readonly]{background:var(--g-pp);color:var(--ts);cursor:default}
 .field select:disabled{background:var(--bg);color:var(--tm);cursor:not-allowed}
-.field-note{font-size:10.5px;color:var(--tm);margin-top:4px;font-style:italic}
+.field-note{font-size:10.5px;color:var(--tm);margin-top:4px;display:flex;align-items:center;gap:4px}
+.field-note svg{flex-shrink:0;opacity:.7}
 
-/* ════ TRAINING INFO BOX ════ */
-.training-info-box{
-  background:var(--g-p);border:1.5px solid var(--g-r);border-radius:var(--r10);
-  padding:14px 16px;margin-bottom:18px;
+/* ════ TIME PICKER ════ */
+.time-picker-wrap{position:relative}
+.time-picker-wrap input{cursor:pointer;padding-right:36px}
+.time-picker-trigger{
+  position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  color:var(--tm);pointer-events:none;
 }
-.training-info-row{display:flex;gap:8px;align-items:flex-start;margin-bottom:6px}
-.training-info-row:last-child{margin-bottom:0}
-.ti-icon{font-size:14px;flex-shrink:0;margin-top:1px}
-.ti-label{font-size:10.5px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.3px;margin-bottom:1px}
-.ti-value{font-size:13.5px;font-weight:600;color:var(--g-d)}
+.time-dropdown{
+  position:absolute;top:calc(100% + 6px);left:0;right:0;
+  background:var(--w);border:1.5px solid var(--g);border-radius:var(--r10);
+  box-shadow:var(--s3);z-index:200;overflow:hidden;display:none;
+}
+.time-dropdown.open{display:block}
+.time-dropdown-inner{display:flex;max-height:260px}
+.time-col{flex:1;overflow-y:auto;border-right:1px solid var(--bd);scroll-behavior:smooth}
+.time-col:last-child{border-right:none}
+.time-col-head{
+  padding:7px 10px;font-size:9.5px;font-weight:700;color:var(--g);
+  text-transform:uppercase;letter-spacing:.5px;background:var(--g-p);
+  border-bottom:1px solid var(--g-r);text-align:center;position:sticky;top:0;z-index:1;
+}
+.time-opt{
+  padding:8px 10px;font-size:13.5px;font-weight:500;color:var(--ts);
+  cursor:pointer;text-align:center;transition:background .1s,color .1s;white-space:nowrap;
+  font-family:'Inter',monospace;
+}
+.time-opt:hover{background:var(--g-p);color:var(--g)}
+.time-opt.selected{background:var(--g);color:#fff;font-weight:700}
+.time-sep{
+  display:flex;align-items:center;justify-content:center;
+  border-right:1px solid var(--bd);flex-shrink:0;width:24px;
+}
+.time-sep span{font-size:18px;font-weight:700;color:var(--tm)}
+.time-dropdown-foot{
+  padding:8px 12px;border-top:1px solid var(--bd);display:flex;
+  justify-content:flex-end;gap:6px;background:var(--bg);
+}
+.time-range-row{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 12px 0;
+}
+.time-range-label{font-size:10px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.4px;flex-shrink:0}
+.time-range-sep{font-size:13px;color:var(--tm);padding:0 2px}
+
+/* ════ COURSE DETAIL PANEL ════ */
+.course-detail-panel{
+  background:var(--g-p);border:1.5px dashed var(--g-r);border-radius:var(--r10);
+  padding:13px 15px;margin-top:10px;margin-bottom:16px;display:none;
+}
+.course-detail-panel.show{display:block}
+.cdp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cdp-item{display:flex;flex-direction:column;gap:2px}
+.cdp-label{font-size:9.5px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;gap:4px}
+.cdp-label svg{opacity:.7}
+.cdp-value{font-size:13px;font-weight:600;color:var(--g-d)}
 
 /* ════ LOADING ════ */
 .loading-bar{height:3px;background:var(--g-p);border-radius:99px;overflow:hidden;margin-bottom:12px;display:none}
@@ -174,54 +209,54 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
 @keyframes slide{0%{transform:translateX(-150%)}100%{transform:translateX(400%)}}
 .alert-err{
   background:var(--rp);color:var(--r);border:1px solid var(--rb);border-radius:var(--r6);
-  padding:10px 13px;font-size:13px;font-weight:500;margin-bottom:13px;
+  padding:10px 13px;font-size:13px;font-weight:500;margin-bottom:12px;
   display:none;align-items:center;gap:7px;
 }
 
-/* ════ SUBMIT BTN ════ */
+/* ════ SUBMIT ════ */
 .btn-submit{
-  width:100%;padding:15px;background:linear-gradient(135deg,var(--g) 0%,var(--g-m) 100%);
-  color:var(--w);font-family:inherit;font-size:16px;font-weight:700;border:none;
+  width:100%;padding:14px;background:linear-gradient(135deg,var(--g) 0%,var(--g-m) 100%);
+  color:var(--w);font-family:inherit;font-size:15.5px;font-weight:700;border:none;
   border-radius:var(--r10);cursor:pointer;display:flex;align-items:center;
   justify-content:center;gap:9px;margin-top:20px;letter-spacing:.2px;
-  transition:all .2s;box-shadow:0 4px 14px rgba(27,94,43,.35);
+  transition:all .2s;box-shadow:0 4px 14px rgba(27,94,43,.34);
 }
-.btn-submit:hover{background:linear-gradient(135deg,var(--g-d) 0%,var(--g) 100%);box-shadow:0 6px 20px rgba(27,94,43,.45);transform:translateY(-1px)}
+.btn-submit:hover{background:linear-gradient(135deg,var(--g-d) 0%,var(--g) 100%);box-shadow:0 6px 20px rgba(27,94,43,.44);transform:translateY(-1px)}
 .btn-submit:active{transform:scale(.97) translateY(0)}
 .btn-submit:disabled{background:var(--tm);cursor:not-allowed;transform:none;box-shadow:none}
-.footnote{font-size:11px;color:var(--tm);text-align:center;margin-top:12px;line-height:1.7}
+.footnote{font-size:11px;color:var(--tm);text-align:center;margin-top:11px;line-height:1.7;display:flex;align-items:center;justify-content:center;gap:5px}
 
 /* ════ SUCCESS ════ */
-.success-page{text-align:center;padding:40px 20px 48px}
+.success-page{text-align:center;padding:38px 18px 46px}
 .sc-badge{
-  width:86px;height:86px;
+  width:84px;height:84px;
   background:linear-gradient(135deg,#d1fae5,var(--g-p));
   border-radius:50%;display:flex;align-items:center;justify-content:center;
-  margin:0 auto 20px;border:3px solid var(--g-r);
-  box-shadow:0 4px 20px rgba(27,94,43,.2);
+  margin:0 auto 18px;border:3px solid var(--g-r);
+  box-shadow:0 4px 20px rgba(27,94,43,.18);
   animation:popIn .5s cubic-bezier(.34,1.56,.64,1) both;
 }
 @keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
-.sc-title{font-size:22px;font-weight:700;color:var(--g-d);margin-bottom:14px}
+.sc-title{font-size:21px;font-weight:700;color:var(--g-d);margin-bottom:14px}
 .sc-info-card{
   background:var(--g-p);border:1px solid var(--g-r);border-radius:var(--r10);
   padding:16px;text-align:left;margin-bottom:20px;
 }
-.sc-row{display:flex;gap:8px;margin-bottom:8px;align-items:flex-start}
+.sc-row{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
 .sc-row:last-child{margin-bottom:0}
-.sc-row-icon{font-size:13px;flex-shrink:0;margin-top:2px}
-.sc-row-label{font-size:10.5px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.3px;margin-bottom:1px}
-.sc-row-val{font-size:14px;font-weight:600;color:var(--g-d)}
+.sc-row-icon{width:28px;height:28px;background:var(--g-r);border-radius:var(--r6);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sc-row-label{font-size:9.5px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px}
+.sc-row-val{font-size:13.5px;font-weight:600;color:var(--g-d)}
 .btn-next{
-  display:inline-flex;align-items:center;gap:7px;padding:13px 32px;
+  display:inline-flex;align-items:center;gap:7px;padding:12px 30px;
   background:linear-gradient(135deg,var(--g),var(--g-m));color:var(--w);
   font-family:inherit;font-size:14px;font-weight:700;border:none;border-radius:var(--r10);
-  cursor:pointer;transition:all .2s;box-shadow:0 3px 12px rgba(27,94,43,.3);
+  cursor:pointer;transition:all .2s;box-shadow:0 3px 12px rgba(27,94,43,.28);
 }
-.btn-next:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(27,94,43,.4)}
+.btn-next:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(27,94,43,.38)}
 
 /* ════ BUTTONS ════ */
-.btn{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;font-family:inherit;font-size:12px;font-weight:600;border-radius:var(--r6);border:1.5px solid var(--bd);background:var(--w);color:var(--t);cursor:pointer;white-space:nowrap;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:8px 13px;font-family:inherit;font-size:12px;font-weight:600;border-radius:var(--r6);border:1.5px solid var(--bd);background:var(--w);color:var(--t);cursor:pointer;white-space:nowrap;transition:all .15s;-webkit-tap-highlight-color:transparent}
 .btn:hover{background:var(--bg)}
 .btn-primary{background:var(--g);color:var(--w);border-color:var(--g);box-shadow:0 1px 4px rgba(27,94,43,.2)}
 .btn-primary:hover{background:var(--g-d);border-color:var(--g-d)}
@@ -242,34 +277,33 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
 .page-head-btns{display:flex;gap:7px;flex-wrap:wrap}
 
 /* ════ PIN SCREEN ════ */
-.pin-page{min-height:calc(100vh - 72px - 49px);display:flex;align-items:center;justify-content:center;padding:32px 16px}
+.pin-page{min-height:calc(100vh - 70px - 48px);display:flex;align-items:center;justify-content:center;padding:32px 16px}
 .pin-card{
   background:var(--w);border-radius:var(--r24);border:1px solid var(--bd);
   box-shadow:var(--s4);padding:40px 32px 36px;width:100%;max-width:360px;text-align:center;
 }
 .pin-icon-wrap{
-  width:64px;height:64px;background:linear-gradient(135deg,var(--g-p),#d1fae5);
+  width:62px;height:62px;background:linear-gradient(135deg,var(--g-p),#d1fae5);
   border-radius:50%;display:flex;align-items:center;justify-content:center;
-  margin:0 auto 20px;border:2px solid var(--g-r);
+  margin:0 auto 18px;border:2px solid var(--g-r);
 }
-.pin-title{font-size:18px;font-weight:700;color:var(--g-d);margin-bottom:6px}
-.pin-sub{font-size:13px;color:var(--ts);margin-bottom:24px;line-height:1.6}
+.pin-title{font-size:17.5px;font-weight:700;color:var(--g-d);margin-bottom:5px}
+.pin-sub{font-size:12.5px;color:var(--ts);margin-bottom:22px;line-height:1.65}
 .pin-field{
   width:100%;padding:14px;text-align:center;font-size:28px;letter-spacing:12px;
   font-family:'Inter',monospace;font-weight:700;border:1.5px solid var(--bd);
-  border-radius:var(--r10);outline:none;margin-bottom:14px;color:var(--g-d);
+  border-radius:var(--r10);outline:none;margin-bottom:13px;color:var(--g-d);
   -webkit-text-security:disc;transition:border-color .15s,box-shadow .15s;
 }
 .pin-field:focus{border-color:var(--g);box-shadow:0 0 0 3px rgba(27,94,43,.12)}
 .pin-err{
   font-size:12.5px;color:var(--r);margin-top:10px;display:none;
   background:var(--rp);border:1px solid var(--rb);border-radius:var(--r6);
-  padding:9px 12px;display:flex;align-items:center;gap:7px;
+  padding:9px 12px;align-items:center;gap:7px;
 }
-.pin-err-msg{display:none}
 
 /* ════ HR TABS ════ */
-.hr-tabs{display:flex;gap:0;margin-bottom:20px;background:var(--bg);border-radius:var(--r10);padding:3px;border:1px solid var(--bd)}
+.hr-tabs{display:flex;gap:0;margin-bottom:18px;background:var(--bg);border-radius:var(--r10);padding:3px;border:1px solid var(--bd)}
 .hr-tab{
   flex:1;padding:9px 10px;font-family:inherit;font-size:12.5px;font-weight:600;
   color:var(--tm);background:transparent;border:none;
@@ -281,31 +315,30 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
 .hr-tab.active svg{opacity:1}
 
 /* ════ METRICS ════ */
-.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:18px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:16px}
 .metric{
   background:var(--w);border:1px solid var(--bd);border-radius:var(--r10);
-  padding:14px 8px;text-align:center;box-shadow:var(--s1);
-  transition:transform .15s,box-shadow .15s;
+  padding:13px 8px;text-align:center;box-shadow:var(--s1);transition:transform .15s,box-shadow .15s;
 }
 .metric:hover{transform:translateY(-2px);box-shadow:var(--s2)}
-.metric-n{font-size:26px;font-weight:700;color:var(--g);font-family:'Inter',sans-serif;line-height:1;margin-bottom:5px}
+.metric-icon{width:28px;height:28px;border-radius:var(--r6);background:var(--g-p);display:flex;align-items:center;justify-content:center;margin:0 auto 7px}
+.metric-n{font-size:24px;font-weight:700;color:var(--g);font-family:'Inter',sans-serif;line-height:1;margin-bottom:4px}
 .metric-l{font-size:9.5px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.5px;line-height:1.3}
-.metric-icon{font-size:16px;margin-bottom:4px}
 
 /* ════ SHEET TABS ════ */
-.sheet-tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+.sheet-tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
 .sheet-tab{
   padding:5px 12px;border-radius:var(--r6);font-size:12px;font-weight:600;
   font-family:'Inter',sans-serif;border:1.5px solid var(--bd);background:var(--w);
   color:var(--ts);cursor:pointer;transition:all .15s;
 }
-.sheet-tab.active{background:var(--g);color:var(--w);border-color:var(--g);box-shadow:0 1px 4px rgba(27,94,43,.25)}
+.sheet-tab.active{background:var(--g);color:var(--w);border-color:var(--g);box-shadow:0 1px 4px rgba(27,94,43,.22)}
 .sheet-tab:hover:not(.active){border-color:var(--g);color:var(--g)}
 .no-data-hint{font-size:12px;color:var(--tm)}
 
 /* ════ TOOLBAR ════ */
-.toolbar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-.search-wrap{position:relative;flex:1;min-width:170px}
+.toolbar{display:flex;gap:8px;margin-bottom:11px;flex-wrap:wrap}
+.search-wrap{position:relative;flex:1;min-width:160px}
 .search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--tm);pointer-events:none}
 .search-field{
   width:100%;padding:9px 11px 9px 32px;border:1.5px solid var(--bd);
@@ -316,31 +349,23 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
 .filter-sel{
   padding:9px 28px 9px 11px;border:1.5px solid var(--bd);border-radius:var(--r6);
   font-family:inherit;font-size:13px;background:var(--w);outline:none;cursor:pointer;
-  min-width:130px;
+  min-width:120px;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%238E9489' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 9px center;
   -webkit-appearance:none;appearance:none;
 }
-.toolbar-actions{display:flex;gap:7px}
 
 /* ════ LIST ════ */
 .list-card{background:var(--w);border:1px solid var(--bd);border-radius:var(--r14);overflow:hidden;box-shadow:var(--s1)}
-.list-row{
-  display:flex;align-items:center;gap:12px;padding:13px 16px;
-  border-bottom:1px solid var(--bg);transition:background .1s;
-}
+.list-row{display:flex;align-items:center;gap:12px;padding:13px 15px;border-bottom:1px solid var(--bg);transition:background .1s}
 .list-row:last-child{border-bottom:none}
 .list-row:hover{background:#FAFAF9}
-.row-num{
-  width:32px;height:32px;border-radius:50%;background:var(--g-p);color:var(--g-d);
-  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;
-  flex-shrink:0;font-family:'Inter',sans-serif;
-}
+.row-num{width:30px;height:30px;border-radius:50%;background:var(--g-p);color:var(--g-d);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;font-family:'Inter',sans-serif}
 .row-info{flex:1;min-width:0}
 .row-name{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.row-sub{font-size:12px;color:var(--ts);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row-sub{font-size:11.5px;color:var(--ts);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .row-tags{display:flex;gap:4px;margin-top:5px;flex-wrap:wrap}
-.tag{display:inline-block;font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:var(--r4);letter-spacing:.2px}
+.tag{display:inline-flex;align-items:center;gap:3px;font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:var(--r4);letter-spacing:.2px}
 .tag-course{background:var(--g-p);color:var(--g-d)}
 .tag-site{background:var(--bluep);color:var(--blue)}
 .tag-emp{background:#F3F4F6;color:#374151}
@@ -348,44 +373,42 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
 .row-meta{text-align:right;flex-shrink:0}
 .row-time{font-size:11px;color:var(--tm);font-family:'Inter',sans-serif}
 
-/* ════ EMPTY / SPIN ════ */
-.empty-state{text-align:center;padding:48px 20px;color:var(--tm)}
-.empty-icon{font-size:40px;margin-bottom:14px}
-.spin-wrap{width:48px;height:48px;background:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
-.empty-state p{font-size:13px;line-height:1.7}
+/* ════ EMPTY ════ */
+.empty-state{text-align:center;padding:46px 20px;color:var(--tm)}
+.empty-icon-wrap{width:56px;height:56px;border-radius:50%;background:var(--bg);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.spin-wrap{width:46px;height:46px;background:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 13px}
+.empty-state p{font-size:13px;line-height:1.8}
 .empty-state small{font-size:11px}
 .danger-row{margin-top:12px;display:flex;justify-content:flex-end}
 
 /* ════ COURSE FORM ════ */
 .course-form{
   background:linear-gradient(135deg,var(--g-pp) 0%,#fff 100%);
-  border:1.5px solid var(--g-r);border-radius:var(--r14);
-  padding:20px;margin-bottom:16px;
+  border:1.5px solid var(--g-r);border-radius:var(--r14);padding:18px;margin-bottom:14px;
 }
 .course-form-title{
-  font-size:12px;font-weight:700;color:var(--g-d);text-transform:uppercase;
-  letter-spacing:.5px;margin-bottom:16px;display:flex;align-items:center;gap:7px;
+  font-size:11.5px;font-weight:700;color:var(--g-d);text-transform:uppercase;
+  letter-spacing:.5px;margin-bottom:15px;display:flex;align-items:center;gap:7px;
 }
 .course-form-grid{display:grid;gap:12px}
 .course-form-grid .field{margin-bottom:0}
 .course-form-grid.g2{grid-template-columns:1fr 1fr}
 .course-form-grid.g3{grid-template-columns:1fr 1fr 1fr}
-.course-form-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+.course-form-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
 
-/* ════ COURSE LIST ════ */
-.course-row{
-  display:flex;align-items:flex-start;justify-content:space-between;
-  padding:14px 16px;border-bottom:1px solid var(--bg);gap:10px;transition:background .1s;
-}
+/* ════ COURSE ROW ════ */
+.course-row{display:flex;align-items:flex-start;justify-content:space-between;padding:14px 15px;border-bottom:1px solid var(--bg);gap:10px;transition:background .1s}
 .course-row:last-child{border-bottom:none}
 .course-row:hover{background:#FAFAF9}
-.course-hidden{opacity:.55}
+.course-hidden{opacity:.52}
 .course-left{display:flex;align-items:flex-start;gap:10px;flex:1;min-width:0}
-.course-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:5px}
-.dot-active{background:var(--ok);box-shadow:0 0 0 3px rgba(21,128,61,.15)}
+.course-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.dot-active{background:var(--ok);box-shadow:0 0 0 3px rgba(21,128,61,.14)}
 .dot-hidden{background:var(--tm)}
 .course-name{font-size:14px;font-weight:600;margin-bottom:4px;color:var(--t)}
-.course-meta{font-size:11.5px;color:var(--tm);line-height:1.7}
+.course-meta{font-size:11.5px;color:var(--tm);line-height:1.75;display:flex;flex-wrap:wrap;gap:0 12px}
+.course-meta-item{display:flex;align-items:center;gap:4px}
+.course-meta-item svg{opacity:.5;flex-shrink:0}
 .course-actions{display:flex;gap:5px;flex-shrink:0;padding-top:2px}
 
 /* ════ INFO BOX ════ */
@@ -397,7 +420,7 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
 
 /* ════ MODAL ════ */
 .modal-ov{
-  position:fixed;inset:0;background:rgba(0,0,0,.55);
+  position:fixed;inset:0;background:rgba(0,0,0,.52);
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;
   opacity:0;pointer-events:none;transition:opacity .22s;
@@ -405,24 +428,23 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
 .modal-ov.open{opacity:1;pointer-events:all}
 .modal-box{
   background:var(--w);border-radius:var(--r24);box-shadow:var(--s4);
-  padding:34px 28px 28px;width:100%;max-width:400px;
+  padding:32px 26px 26px;width:100%;max-width:400px;
   transform:scale(.88) translateY(20px);
-  transition:transform .32s cubic-bezier(.34,1.56,.64,1);
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1);
 }
 .modal-ov.open .modal-box{transform:scale(1) translateY(0)}
 .modal-icon{
-  width:58px;height:58px;border-radius:50%;background:var(--bg);
+  width:56px;height:56px;border-radius:50%;background:var(--bg);
   display:flex;align-items:center;justify-content:center;
-  margin:0 auto 18px;font-size:26px;
-  box-shadow:0 2px 12px rgba(0,0,0,.08);
+  margin:0 auto 16px;box-shadow:0 2px 10px rgba(0,0,0,.07);
 }
 .modal-icon.icon-warn{background:var(--ap)}
 .modal-icon.icon-danger{background:var(--rp)}
 .modal-icon.icon-info{background:var(--g-p)}
 .modal-icon.icon-success{background:var(--okp)}
-.modal-title{font-size:19px;font-weight:700;text-align:center;margin-bottom:10px;color:var(--t)}
+.modal-title{font-size:18px;font-weight:700;text-align:center;margin-bottom:9px;color:var(--t)}
 .modal-msg{font-size:13.5px;color:var(--ts);text-align:center;line-height:1.8;margin-bottom:20px}
-.modal-input-wrap{margin-bottom:18px}
+.modal-input-wrap{margin-bottom:16px}
 #modal-input{
   width:100%;padding:12px 14px;border:1.5px solid var(--bd);border-radius:var(--r10);
   font-family:inherit;font-size:16px;outline:none;transition:border-color .15s;
@@ -438,56 +460,34 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
 .modal-btn-primary{background:linear-gradient(135deg,var(--g),var(--g-m));color:var(--w);border-color:var(--g)}
 .modal-btn-primary:hover{background:linear-gradient(135deg,var(--g-d),var(--g))}
 .modal-btn-danger{background:linear-gradient(135deg,#dc2626,#b91c1c);color:var(--w);border-color:var(--r)}
-.modal-btn-danger:hover{background:linear-gradient(135deg,#b91c1c,#991B1B)}
+.modal-btn-danger:hover{background:linear-gradient(135deg,#b91c1c,#991b1b)}
 .modal-btn-cancel{background:var(--w);color:var(--ts);border-color:var(--bd)}
 .modal-btn-cancel:hover{background:var(--bg)}
 
 /* ════ TOAST ════ */
 .toast{
-  position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(24px);
-  display:flex;align-items:center;gap:9px;padding:13px 22px;border-radius:99px;
+  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(24px);
+  display:flex;align-items:center;gap:9px;padding:12px 20px;border-radius:99px;
   font-size:13px;font-weight:600;white-space:nowrap;max-width:90vw;
-  box-shadow:0 6px 24px rgba(0,0,0,.2);z-index:2000;
-  opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;
+  box-shadow:0 6px 24px rgba(0,0,0,.18);z-index:2000;
+  opacity:0;transition:opacity .24s,transform .24s;pointer-events:none;
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast-success{background:var(--g-d);color:var(--w)}
 .toast-error{background:#dc2626;color:var(--w)}
 .toast-info{background:#1e293b;color:var(--w)}
 .toast-loading{background:#1e293b;color:var(--w)}
-.toast-icon{font-size:15px}
+.toast-warning{background:#92400e;color:var(--w)}
 
 .spin{animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* ════ FOOTER ════ */
 .site-footer{
-  text-align:center;padding:20px 16px 32px;color:var(--tm);font-size:11px;line-height:1.8;
-  border-top:1px solid var(--bd);background:var(--w);
+  text-align:center;padding:18px 16px 28px;color:var(--tm);font-size:11px;
+  line-height:1.8;border-top:1px solid var(--bd);background:var(--w);
 }
-.footer-logo-text{font-weight:700;color:var(--g);font-size:13px;margin-bottom:3px}
-
-/* ════ COURSE SELECT DETAIL ════ */
-.course-detail-panel{
-  background:var(--g-p);border:1.5px dashed var(--g-r);border-radius:var(--r10);
-  padding:13px 15px;margin-top:10px;margin-bottom:16px;
-  display:none;
-}
-.course-detail-panel.show{display:block}
-.cdp-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.cdp-item{display:flex;flex-direction:column;gap:2px}
-.cdp-label{font-size:9.5px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.3px}
-.cdp-value{font-size:13px;font-weight:600;color:var(--g-d)}
-
-/* ════ SUMMARY BAND ════ */
-.summary-band{
-  background:linear-gradient(135deg,var(--g-p) 0%,#fff 100%);
-  border:1px solid var(--g-r);border-radius:var(--r10);
-  padding:12px 15px;margin-bottom:14px;
-  display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
-}
-.sb-info{font-size:12px;color:var(--ts)}
-.sb-count{font-size:22px;font-weight:700;color:var(--g);font-family:'Inter',sans-serif}
+.footer-brand{font-weight:700;color:var(--g);font-size:13px;margin-bottom:3px;display:flex;align-items:center;justify-content:center;gap:6px}
 
 /* ════ RESPONSIVE ════ */
 @media(max-width:520px){
@@ -495,7 +495,7 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
   .field-row.col3{grid-template-columns:auto 1fr}
   .metrics{grid-template-columns:repeat(2,1fr)}
   .card-body{padding:16px}
-  .card-head{padding:16px 16px 14px}
+  .card-head{padding:15px 16px 13px}
   .site-header{height:64px;padding:0 14px}
   .wrap{padding:16px 12px 72px}
   .course-form-grid.g2,.course-form-grid.g3{grid-template-columns:1fr}
@@ -503,10 +503,10 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
   .hero-banner{padding:18px 16px}
   .pin-card{padding:30px 20px 26px}
   .modal-btns{flex-direction:column}
+  .header-badge{display:none}
 }
 @media(max-width:380px){
-  .metrics{grid-template-columns:1fr 1fr}
-  .metric-n{font-size:22px}
+  .metric-n{font-size:20px}
 }
 </style>
 </head>
@@ -516,20 +516,22 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
 <header class="site-header">
   <div class="header-logo-wrap" id="header-logo-wrap">
     <div class="header-logo-box">
-      <!-- CHEMEMAN "C" logo -->
-      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <text x="3" y="26" font-family="Georgia,serif" font-size="26" font-weight="700" fill="white">C</text>
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 3C9.925 3 5 7.925 5 14s4.925 11 11 11c2.2 0 4.25-.648 5.97-1.76" stroke="white" stroke-width="2.8" stroke-linecap="round"/>
+        <path d="M22 8l-6 6 3 3" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="25" cy="22" r="4" stroke="white" stroke-width="2" fill="none"/>
+        <path d="M23.5 22l1 1.2 2-2.2" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
   </div>
   <div class="header-sep"></div>
   <div class="header-info">
     <strong>CHEMEMAN Training</strong>
-    <span>บริษัท เคมีแมน จำกัด (มหาชน) · ระบบบันทึกการเข้าร่วมอบรม</span>
+    <span>บริษัท เคมีแมน จำกัด (มหาชน) · ระบบบันทึกการฝึกอบรม</span>
   </div>
-  <div class="header-badge" id="system-status">
+  <div class="header-badge">
     <div class="badge-dot"></div>
-    <span>ออนไลน์</span>
+    <span>Online</span>
   </div>
 </header>
 
@@ -551,45 +553,55 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
   </button>
 </nav>
 
-<!-- ════════════════════════════════════════
-     PAGE: ลงทะเบียน
-════════════════════════════════════════ -->
+<!-- ══════════════════ PAGE: ลงทะเบียน ══════════════════ -->
 <div id="page-sign" class="page active">
   <div class="wrap">
 
     <!-- HERO -->
     <div class="hero-banner">
-      <div class="hero-title">📋 ใบลงทะเบียนการฝึกอบรม</div>
-      <div class="hero-sub">กรอกข้อมูลให้ครบถ้วน ระบบจะบันทึกอัตโนมัติทันที</div>
+      <div class="hero-row">
+        <div class="hero-icon-box">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <div>
+          <div class="hero-title">ใบลงทะเบียนการฝึกอบรม</div>
+          <div class="hero-sub">กรอกข้อมูลให้ครบถ้วน — ระบบจะบันทึกเข้า Google Sheets อัตโนมัติ</div>
+        </div>
+      </div>
       <div class="hero-chips">
         <span class="hero-chip">
-          <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
           บันทึกลง Google Sheets
         </span>
         <span class="hero-chip">
-          <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           เอกสาร IMAFHR03
         </span>
-        <span class="hero-chip">🔒 ปลอดภัย</span>
+        <span class="hero-chip">
+          <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          ข้อมูลปลอดภัย
+        </span>
       </div>
     </div>
 
-    <!-- FORM -->
     <div id="form-wrap">
-      <!-- ── หัวข้ออบรม ── -->
+      <!-- CARD 1: ข้อมูลการอบรม -->
       <div class="card">
         <div class="card-head">
           <div class="card-head-icon">
-            <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
+            <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
           </div>
           <div>
             <h2>ข้อมูลการอบรม</h2>
-            <p>เลือกหัวข้อและวันที่อบรม</p>
+            <p>เลือกหัวข้ออบรมและกำหนดวันเวลา</p>
           </div>
         </div>
         <div class="card-body">
@@ -601,42 +613,106 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
             </select>
           </div>
 
-          <!-- Panel ข้อมูลหลักสูตร (แสดงเมื่อเลือก) -->
+          <!-- ข้อมูลหลักสูตร (แสดงเมื่อเลือก) -->
           <div class="course-detail-panel" id="course-detail-panel">
-            <div class="cdp-row">
+            <div class="cdp-grid">
               <div class="cdp-item">
-                <span class="cdp-label">📅 วันที่อบรม</span>
+                <span class="cdp-label">
+                  <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  วันที่อบรม
+                </span>
                 <span class="cdp-value" id="cdp-date">—</span>
               </div>
               <div class="cdp-item">
-                <span class="cdp-label">⏰ เวลา</span>
+                <span class="cdp-label">
+                  <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  เวลาอบรม
+                </span>
                 <span class="cdp-value" id="cdp-time">—</span>
               </div>
               <div class="cdp-item" style="margin-top:8px">
-                <span class="cdp-label">📍 สถานที่</span>
+                <span class="cdp-label">
+                  <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  สถานที่
+                </span>
                 <span class="cdp-value" id="cdp-location">—</span>
               </div>
               <div class="cdp-item" style="margin-top:8px">
-                <span class="cdp-label">👤 วิทยากร</span>
+                <span class="cdp-label">
+                  <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  วิทยากร
+                </span>
                 <span class="cdp-value" id="cdp-instructor">—</span>
               </div>
             </div>
           </div>
 
-          <!-- วันที่ (อ่านจากหลักสูตร แต่ยังแก้ได้) -->
-          <div class="field-row col2">
+          <!-- วันที่ + เวลา -->
+          <div class="field-row col2" style="margin-bottom:0">
             <div class="field">
               <label>วันที่อบรม <span class="req">*</span></label>
               <input type="date" id="s-date">
             </div>
             <div class="field">
-              <label>เวลา</label>
-              <input type="text" id="s-time" placeholder="08.00-17.00น." readonly
-                style="background:var(--bg);color:var(--ts)">
+              <label>ช่วงเวลาอบรม <span class="req">*</span></label>
+              <div class="time-picker-wrap" id="time-picker-wrap">
+                <input type="text" id="s-time" placeholder="เลือกเวลา..." readonly
+                  onclick="toggleTimePicker()" autocomplete="off">
+                <span class="time-picker-trigger">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                </span>
+                <!-- Time Dropdown -->
+                <div class="time-dropdown" id="time-dropdown">
+                  <div style="padding:10px 12px 6px;font-size:10.5px;font-weight:700;color:var(--g-d);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:6px">
+                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    กำหนดช่วงเวลา (เริ่ม — สิ้นสุด)
+                  </div>
+                  <div style="padding:10px 12px 6px;font-size:10.5px;font-weight:700;color:var(--ts);display:grid;grid-template-columns:1fr 16px 1fr;gap:4px;text-align:center">
+                    <span>เวลาเริ่ม</span><span></span><span>เวลาสิ้นสุด</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 24px 1fr">
+                    <!-- Start time -->
+                    <div class="time-dropdown-inner" style="display:flex">
+                      <div class="time-col" id="col-sh">
+                        <div class="time-col-head">ชม.</div>
+                        <div id="opts-sh"></div>
+                      </div>
+                      <div class="time-sep"><span>:</span></div>
+                      <div class="time-col" id="col-sm">
+                        <div class="time-col-head">นาที</div>
+                        <div id="opts-sm"></div>
+                      </div>
+                    </div>
+                    <!-- Sep -->
+                    <div style="display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:var(--tm)">—</div>
+                    <!-- End time -->
+                    <div class="time-dropdown-inner" style="display:flex">
+                      <div class="time-col" id="col-eh">
+                        <div class="time-col-head">ชม.</div>
+                        <div id="opts-eh"></div>
+                      </div>
+                      <div class="time-sep"><span>:</span></div>
+                      <div class="time-col" id="col-em">
+                        <div class="time-col-head">นาที</div>
+                        <div id="opts-em"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="time-dropdown-foot">
+                    <button class="btn btn-ghost btn-xs" onclick="clearTimePicker()">ล้าง</button>
+                    <button class="btn btn-primary btn-xs" onclick="confirmTimePicker()">
+                      <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                      ยืนยัน
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="alert-err" id="error-msg">
+          <div class="alert-err" id="error-msg" style="margin-top:12px">
             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             <span id="error-text"></span>
           </div>
@@ -644,24 +720,27 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
         </div>
       </div>
 
-      <!-- ── ข้อมูลส่วนตัว ── -->
-      <div class="card" style="margin-top:14px">
+      <!-- CARD 2: ข้อมูลผู้เข้าอบรม -->
+      <div class="card">
         <div class="card-head">
           <div class="card-head-icon">
-            <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+            <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
               <circle cx="12" cy="7" r="4"/>
             </svg>
           </div>
           <div>
             <h2>ข้อมูลผู้เข้าอบรม</h2>
-            <p>กรอกข้อมูลส่วนตัวให้ถูกต้อง</p>
+            <p>กรอกข้อมูลส่วนตัวให้ครบถ้วน</p>
           </div>
         </div>
         <div class="card-body">
-          <div class="sec-lbl"><span class="sec-lbl-icon">👤</span> ข้อมูลส่วนตัว</div>
+          <div class="sec-lbl">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            ข้อมูลส่วนตัว
+          </div>
 
-          <!-- คำนำหน้า + ชื่อ + นามสกุล -->
+          <!-- คำนำหน้า ชื่อ นามสกุล -->
           <div class="field-row col3" style="margin-bottom:14px">
             <div class="field">
               <label>คำนำหน้า <span class="req">*</span></label>
@@ -687,15 +766,19 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
               <input type="text" id="s-empcode" placeholder="เช่น EMP-0001">
             </div>
             <div class="field">
-              <label>เลขบัตรประชาชน (ID)
-                <span style="font-weight:400;color:var(--tm);text-transform:none;letter-spacing:0"> - ไม่บังคับ</span>
-              </label>
-              <input type="text" id="s-idcard" placeholder="หากทราบ / ไม่จำเป็น" maxlength="13" inputmode="numeric">
-              <div class="field-note">ข้อมูลนี้ใช้สำหรับยืนยันตัวตนเท่านั้น</div>
+              <label>เลขบัตรประชาชน (ID)</label>
+              <input type="text" id="s-idcard" placeholder="ใส่ถ้ามี — ไม่บังคับ" maxlength="13" inputmode="numeric">
+              <div class="field-note">
+                <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                ใช้เพื่อยืนยันตัวตนเท่านั้น
+              </div>
             </div>
           </div>
 
-          <div class="sec-lbl" style="margin-top:20px"><span class="sec-lbl-icon">🏢</span> ข้อมูลการทำงาน</div>
+          <div class="sec-lbl" style="margin-top:20px">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8L6 7h12l-2-4z"/></svg>
+            ข้อมูลการทำงาน
+          </div>
 
           <div class="field" style="margin-bottom:14px">
             <label>ตำแหน่ง</label>
@@ -705,10 +788,10 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
           <div class="field-row col2" style="margin-bottom:0">
             <div class="field">
               <label>หน่วยงาน / แผนก <span class="req">*</span></label>
-              <input type="text" id="s-dept" placeholder="เช่น ฝ่ายผลิต, HR, บัญชี">
+              <input type="text" id="s-dept" placeholder="เช่น ฝ่ายผลิต, HR">
             </div>
             <div class="field">
-              <label>สถานที่สังกัด <span class="req">*</span></label>
+              <label>สาขาที่สังกัด <span class="req">*</span></label>
               <select id="s-site">
                 <option value="">— เลือกสาขา —</option>
                 <option value="KK">KK — แก่งคอย</option>
@@ -721,12 +804,15 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
           </div>
 
           <button class="btn-submit" id="btn-submit" onclick="submitForm()">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <polyline points="20 6 9 17 4 12"/>
             </svg>
             ยืนยันลงทะเบียน
           </button>
-          <p class="footnote">🔒 ข้อมูลของท่านจะถูกบันทึกเพื่อประกอบการฝึกอบรมของบริษัทเท่านั้น</p>
+          <p class="footnote">
+            <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            ข้อมูลจัดเก็บเพื่อประกอบการฝึกอบรมของบริษัทเท่านั้น
+          </p>
         </div>
       </div>
     </div>
@@ -736,45 +822,52 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
       <div class="card">
         <div class="success-page">
           <div class="sc-badge">
-            <svg width="38" height="38" fill="none" stroke="#1B5E2B" stroke-width="2.5" viewBox="0 0 24 24">
+            <svg width="36" height="36" fill="none" stroke="#1B5E2B" stroke-width="2.5" viewBox="0 0 24 24">
               <polyline points="20 6 9 17 4 12"/>
             </svg>
           </div>
-          <div class="sc-title">ลงทะเบียนสำเร็จแล้ว ✓</div>
+          <div class="sc-title">ลงทะเบียนสำเร็จแล้ว</div>
           <div class="sc-info-card">
             <div class="sc-row">
-              <span class="sc-row-icon">👤</span>
+              <div class="sc-row-icon">
+                <svg width="14" height="14" fill="none" stroke="var(--g)" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
               <div>
                 <div class="sc-row-label">ผู้เข้าอบรม</div>
                 <div class="sc-row-val" id="success-name"></div>
               </div>
             </div>
             <div class="sc-row">
-              <span class="sc-row-icon">📚</span>
+              <div class="sc-row-icon">
+                <svg width="14" height="14" fill="none" stroke="var(--g)" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
               <div>
                 <div class="sc-row-label">หัวข้ออบรม</div>
                 <div class="sc-row-val" id="success-course"></div>
               </div>
             </div>
             <div class="sc-row">
-              <span class="sc-row-icon">📅</span>
+              <div class="sc-row-icon">
+                <svg width="14" height="14" fill="none" stroke="var(--g)" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
               <div>
-                <div class="sc-row-label">วันที่</div>
+                <div class="sc-row-label">วันที่ / เวลา</div>
                 <div class="sc-row-val" id="success-date"></div>
               </div>
             </div>
             <div class="sc-row">
-              <span class="sc-row-icon">📍</span>
+              <div class="sc-row-icon">
+                <svg width="14" height="14" fill="none" stroke="var(--g)" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
               <div>
-                <div class="sc-row-label">สถานที่</div>
+                <div class="sc-row-label">สถานที่อบรม</div>
                 <div class="sc-row-val" id="success-loc"></div>
               </div>
             </div>
           </div>
           <button class="btn-next" onclick="resetForm()">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <line x1="12" y1="5" x2="12" y2="19"/>
-              <line x1="5" y1="12" x2="19" y2="12"/>
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
             </svg>
             ลงทะเบียนคนต่อไป
           </button>
@@ -784,30 +877,32 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
   </div>
 
   <footer class="site-footer">
-    <div class="footer-logo-text">CHEMEMAN</div>
-    <div>บริษัท เคมีแมน จำกัด (มหาชน) &nbsp;©&nbsp;2568</div>
+    <div class="footer-brand">
+      <svg width="14" height="14" fill="none" stroke="var(--g)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      CHEMEMAN
+    </div>
+    <div>บริษัท เคมีแมน จำกัด (มหาชน) &nbsp;&copy;&nbsp;2568</div>
     <div style="font-size:10px;color:var(--tm);margin-top:2px">เอกสาร IMAFHR03 · Training Registration System</div>
   </footer>
 </div>
 
-<!-- ════════════════════════════════════════
-     PAGE: HR
-════════════════════════════════════════ -->
+<!-- ══════════════════ PAGE: HR ══════════════════ -->
 <div id="page-hr" class="page">
 
-  <!-- PIN SCREEN -->
+  <!-- PIN -->
   <div class="pin-page" id="hr-pin">
     <div class="pin-card">
       <div class="pin-icon-wrap">
-        <svg width="28" height="28" fill="none" stroke="#1B5E2B" stroke-width="2" viewBox="0 0 24 24">
+        <svg width="26" height="26" fill="none" stroke="#1B5E2B" stroke-width="2" viewBox="0 0 24 24">
           <rect x="3" y="11" width="18" height="11" rx="2"/>
           <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
         </svg>
       </div>
       <div class="pin-title">เข้าสู่ระบบ HR</div>
       <div class="pin-sub">กรอก PIN เพื่อเข้าจัดการหลักสูตร<br>และดูรายงานผู้เข้าอบรม</div>
-      <input class="pin-field" type="password" id="pin-input" maxlength="8" placeholder="••••"
-        inputmode="numeric" onkeydown="if(event.key==='Enter')checkPin()">
+      <input class="pin-field" type="password" id="pin-input" maxlength="8"
+        placeholder="••••" inputmode="numeric"
+        onkeydown="if(event.key==='Enter')checkPin()">
       <button class="btn-submit" onclick="checkPin()" style="margin-top:0">
         <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
           <rect x="3" y="11" width="18" height="11" rx="2"/>
@@ -817,10 +912,13 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
       </button>
       <div class="pin-err" id="pin-err" style="display:none">
         <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span>PIN ไม่ถูกต้อง กรุณาลองใหม่</span>
+        PIN ไม่ถูกต้อง — กรุณาลองใหม่
       </div>
       <p style="font-size:11.5px;color:var(--tm);margin-top:18px">
-        <button onclick="switchPage('sign')" style="font-family:inherit;font-size:11.5px;color:var(--tm);background:none;border:none;cursor:pointer;text-decoration:underline">← กลับหน้าลงทะเบียน</button>
+        <button onclick="switchPage('sign')" style="font-family:inherit;font-size:11.5px;color:var(--tm);background:none;border:none;cursor:pointer;text-decoration:underline;display:inline-flex;align-items:center;gap:4px">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          กลับหน้าลงทะเบียน
+        </button>
       </p>
     </div>
   </div>
@@ -831,7 +929,7 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
       <div class="page-head">
         <div>
           <h2>ระบบผู้ดูแล HR</h2>
-          <p>จัดการหลักสูตร · ดูรายชื่อผู้เข้าอบรม · ออกรายงาน Excel</p>
+          <p>จัดการหลักสูตร · รายชื่อผู้เข้าอบรม · ออกรายงาน</p>
         </div>
         <div class="page-head-btns">
           <button class="btn btn-ghost" onclick="switchPage('sign')">
@@ -845,7 +943,7 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
         </div>
       </div>
 
-      <!-- HR Sub-tabs -->
+      <!-- Sub-tabs -->
       <div class="hr-tabs">
         <button class="hr-tab active" id="hrtab-list" onclick="showHrTab('list')">
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -866,14 +964,15 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
         </button>
       </div>
 
-      <!-- ═══ TAB: รายชื่อ ═══ -->
+      <!-- TAB: รายชื่อ -->
       <div id="hrsection-list">
-        <!-- Metrics -->
         <div class="metrics" id="metrics"></div>
 
-        <!-- Date tabs + Export -->
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
-          <span style="font-size:10px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.5px">เลือกวันที่</span>
+          <span style="font-size:10px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:5px">
+            <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            เลือกวันที่
+          </span>
           <button class="btn btn-primary" style="font-size:12px" onclick="exportExcel()">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -885,7 +984,6 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
         </div>
         <div class="sheet-tabs" id="sheet-tabs"></div>
 
-        <!-- Search + Filter -->
         <div class="toolbar">
           <div class="search-wrap">
             <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -897,7 +995,7 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
           <select class="filter-sel" id="filter-course" onchange="renderList()">
             <option value="">ทุกหัวข้อ</option>
           </select>
-          <select class="filter-sel" id="filter-site" onchange="renderList()" style="min-width:100px">
+          <select class="filter-sel" id="filter-site" onchange="renderList()" style="min-width:90px">
             <option value="">ทุกสาขา</option>
             <option value="KK">KK</option>
             <option value="BKK">BKK</option>
@@ -921,7 +1019,7 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
         </div>
       </div>
 
-      <!-- ═══ TAB: จัดการหลักสูตร ═══ -->
+      <!-- TAB: จัดการหลักสูตร -->
       <div id="hrsection-courses" style="display:none">
         <div class="info-box">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px">
@@ -929,19 +1027,18 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
             <line x1="12" y1="8" x2="12" y2="12"/>
             <line x1="12" y1="16" x2="12.01" y2="16"/>
           </svg>
-          <span>หลักสูตรที่ <strong>แสดง</strong> จะปรากฏในหน้าลงทะเบียนทุกอุปกรณ์ — ข้อมูลซิงค์ผ่าน Google Sheets อัตโนมัติ</span>
+          <span>หลักสูตรที่ <strong>แสดง</strong> จะปรากฏในหน้าลงทะเบียน — ข้อมูลซิงค์ผ่าน Google Sheets ทุกอุปกรณ์</span>
         </div>
 
         <!-- ฟอร์มเพิ่มหลักสูตร -->
         <div class="course-form">
           <div class="course-form-title">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
             </svg>
             เพิ่มหลักสูตรอบรมใหม่
           </div>
 
-          <!-- ชื่อหลักสูตร -->
           <div class="course-form-grid">
             <div class="field">
               <label>ชื่อหลักสูตร <span class="req">*</span></label>
@@ -949,15 +1046,51 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
             </div>
           </div>
 
-          <!-- วันที่ เวลา ประเภท -->
           <div class="course-form-grid g3" style="margin-top:12px">
             <div class="field">
               <label>วันที่อบรม <span class="req">*</span></label>
               <input type="date" id="nc-date">
             </div>
             <div class="field">
-              <label>เวลา <span class="req">*</span></label>
-              <input type="text" id="nc-time" value="08.00-17.00น." placeholder="08.00-17.00น.">
+              <label>ช่วงเวลา <span class="req">*</span></label>
+              <div class="time-picker-wrap" id="nc-time-picker-wrap">
+                <input type="text" id="nc-time" placeholder="เลือกเวลา..." readonly
+                  onclick="toggleTimePicker('nc')" autocomplete="off">
+                <span class="time-picker-trigger">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                </span>
+                <div class="time-dropdown" id="nc-time-dropdown">
+                  <div style="padding:10px 12px 6px;font-size:10.5px;font-weight:700;color:var(--g-d);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:6px">
+                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    กำหนดช่วงเวลา (เริ่ม — สิ้นสุด)
+                  </div>
+                  <div style="padding:10px 12px 6px;font-size:10.5px;font-weight:700;color:var(--ts);display:grid;grid-template-columns:1fr 16px 1fr;gap:4px;text-align:center">
+                    <span>เวลาเริ่ม</span><span></span><span>เวลาสิ้นสุด</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 24px 1fr">
+                    <div class="time-dropdown-inner" style="display:flex">
+                      <div class="time-col"><div class="time-col-head">ชม.</div><div id="nc-opts-sh"></div></div>
+                      <div class="time-sep"><span>:</span></div>
+                      <div class="time-col"><div class="time-col-head">นาที</div><div id="nc-opts-sm"></div></div>
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:var(--tm)">—</div>
+                    <div class="time-dropdown-inner" style="display:flex">
+                      <div class="time-col"><div class="time-col-head">ชม.</div><div id="nc-opts-eh"></div></div>
+                      <div class="time-sep"><span>:</span></div>
+                      <div class="time-col"><div class="time-col-head">นาที</div><div id="nc-opts-em"></div></div>
+                    </div>
+                  </div>
+                  <div class="time-dropdown-foot">
+                    <button class="btn btn-ghost btn-xs" onclick="clearTimePicker('nc')">ล้าง</button>
+                    <button class="btn btn-primary btn-xs" onclick="confirmTimePicker('nc')">
+                      <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                      ยืนยัน
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="field">
               <label>ประเภทผู้เข้าอบรม</label>
@@ -970,7 +1103,6 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
             </div>
           </div>
 
-          <!-- สถานที่ วิทยากร -->
           <div class="course-form-grid g2" style="margin-top:12px">
             <div class="field">
               <label>สถานที่อบรม <span class="req">*</span></label>
@@ -984,11 +1116,10 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
             </div>
           </div>
 
-          <!-- หมายเหตุ -->
           <div class="course-form-grid" style="margin-top:12px">
             <div class="field">
-              <label>หมายเหตุ / รายละเอียดเพิ่มเติม</label>
-              <input type="text" id="nc-note" placeholder="เช่น เฉพาะพนักงานใหม่ประจำไตรมาส 1">
+              <label>หมายเหตุ</label>
+              <input type="text" id="nc-note" placeholder="รายละเอียดเพิ่มเติม เช่น เฉพาะพนักงานใหม่">
             </div>
           </div>
 
@@ -1003,17 +1134,18 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
           </div>
         </div>
 
-        <!-- Course List -->
         <div class="list-card" id="course-list">
           <div class="empty-state">
-            <div class="empty-icon">📚</div>
+            <div class="empty-icon-wrap">
+              <svg width="22" height="22" fill="none" stroke="var(--tm)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
             <p>กำลังโหลด...</p>
           </div>
         </div>
-      </div><!-- /hrsection-courses -->
+      </div>
     </div>
-  </div><!-- /hr-main -->
-</div><!-- /page-hr -->
+  </div>
+</div>
 
 <!-- ════ MODAL ════ -->
 <div class="modal-ov" id="modal" onclick="if(event.target===this)closeModal()">
@@ -1033,56 +1165,160 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
 
 <!-- ════ TOAST ════ -->
 <div class="toast" id="toast">
-  <span class="toast-icon" id="toast-icon"></span>
+  <svg id="toast-icon-svg" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"></svg>
   <span id="toast-text"></span>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 <script>
-(function() {
+(function () {
   'use strict';
 
-  /* ══════════════════════════════════════════
-     CONFIG
-  ══════════════════════════════════════════ */
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyT0nUg5cJQHffbYYjhUIYDVBJ5hpmClGR0Elgq43MzL9GXy9X6eZ4mG0AvFQcLkuyN7w/exec";
-  // PIN เก็บใน memory session เท่านั้น (ไม่ใช้ localStorage ตาม sandbox rules)
-  // ข้อมูลลงชื่อเก็บ in-memory สำหรับ session นี้
-  let PIN_VALUE    = "1234";
-  let hrUnlocked   = false;
-  let activeDate   = "";
-  let cloudCourses = [];
-  let attendanceData = []; // in-memory store for this session
-  let logoTapCount = 0;
-  let logoTapTimer = null;
-  let toastTimer   = null;
+  /* ══ CONFIG ══ */
+  var SCRIPT_URL   = "https://script.google.com/macros/s/AKfycbyT0nUg5cJQHffbYYjhUIYDVBJ5hpmClGR0Elgq43MzL9GXy9X6eZ4mG0AvFQcLkuyN7w/exec";
+  var PIN_VALUE    = "1234";
+  var hrUnlocked   = false;
+  var activeDate   = "";
+  var cloudCourses = [];
+  var attendanceData = [];
+  var logoTapCount = 0, logoTapTimer = null, toastTimer = null;
 
-  /* ══════════════════════════════════════════
-     INIT
-  ══════════════════════════════════════════ */
-  document.addEventListener('DOMContentLoaded', function() {
+  /* ══ TIME PICKER STATE ══ */
+  /* prefix = '' (sign form) or 'nc' (course form) */
+  var tpState = {
+    '': { sh: 8, sm: 0, eh: 17, em: 0 },
+    'nc': { sh: 8, sm: 0, eh: 17, em: 0 }
+  };
+  var tpOpen = { '': false, 'nc': false };
+
+  /* ══ INIT ══ */
+  document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("s-date").value = todayISO();
     loadAndPopulateCourses();
+    buildTimePicker('');
+    buildTimePicker('nc');
 
-    // Logo tap → secret HR access
-    document.getElementById("header-logo-wrap").addEventListener('click', function() {
+    /* logo tap → HR */
+    document.getElementById("header-logo-wrap").addEventListener('click', function () {
       logoTapCount++;
       clearTimeout(logoTapTimer);
-      if (logoTapCount >= 5) {
-        logoTapCount = 0;
-        switchPage('hr');
-      } else {
-        logoTapTimer = setTimeout(function() { logoTapCount = 0; }, 2000);
-      }
+      if (logoTapCount >= 5) { logoTapCount = 0; switchPage('hr'); }
+      else logoTapTimer = setTimeout(function () { logoTapCount = 0; }, 2000);
+    });
+
+    /* close time pickers on outside click */
+    document.addEventListener('click', function (e) {
+      ['', 'nc'].forEach(function (pfx) {
+        var wrap = document.getElementById(pfx ? pfx + '-time-picker-wrap' : 'time-picker-wrap');
+        if (wrap && !wrap.contains(e.target)) closeTimePicker(pfx);
+      });
     });
   });
 
-  /* ══════════════════════════════════════════
-     MODAL SYSTEM
-  ══════════════════════════════════════════ */
-  window.showModal = function(opts) {
-    var modal      = document.getElementById("modal");
+  /* ══ TIME PICKER BUILD ══ */
+  function pfxId(pfx, id) { return pfx ? pfx + '-' + id : id; }
+
+  function buildTimePicker(pfx) {
+    var hours   = [];
+    var minutes = [0, 15, 30, 45];
+    for (var h = 0; h <= 23; h++) hours.push(h);
+
+    function renderCol(colId, values, fmt, key, pfxLocal) {
+      var el = document.getElementById(pfxId(pfxLocal, colId));
+      if (!el) return;
+      el.innerHTML = values.map(function (v) {
+        return '<div class="time-opt" data-val="' + v + '" data-col="' + colId + '" data-pfx="' + pfxLocal + '">' + fmt(v) + '</div>';
+      }).join('');
+      el.querySelectorAll('.time-opt').forEach(function (opt) {
+        opt.addEventListener('click', function () {
+          var val    = parseInt(opt.dataset.val);
+          var col    = opt.dataset.col;
+          var p      = opt.dataset.pfx;
+          var keyMap = { 'opts-sh': 'sh', 'opts-sm': 'sm', 'opts-eh': 'eh', 'opts-em': 'em',
+                         'nc-opts-sh': 'sh', 'nc-opts-sm': 'sm', 'nc-opts-eh': 'eh', 'nc-opts-em': 'em' };
+          var k = col.replace(p ? p + '-' : '', '').replace('opts-', '');
+          /* resolve key from col id suffix */
+          var suffix = opt.parentElement.id.replace(p ? p + '-' : '', '').replace('opts-', '');
+          var skey = suffix; // sh, sm, eh, em
+          tpState[p][skey] = val;
+          refreshTimeOptHighlights(p);
+        });
+      });
+    }
+
+    var fmtH = function (v) { return String(v).padStart(2, '0'); };
+    var fmtM = function (v) { return String(v).padStart(2, '0'); };
+
+    renderCol('opts-sh', hours, fmtH, 'sh', pfx);
+    renderCol('opts-sm', minutes, fmtM, 'sm', pfx);
+    renderCol('opts-eh', hours, fmtH, 'eh', pfx);
+    renderCol('opts-em', minutes, fmtM, 'em', pfx);
+    refreshTimeOptHighlights(pfx);
+  }
+
+  function refreshTimeOptHighlights(pfx) {
+    var s = tpState[pfx];
+    function update(colId, key) {
+      var el = document.getElementById(pfx ? pfx + '-' + colId : colId);
+      if (!el) return;
+      el.querySelectorAll('.time-opt').forEach(function (opt) {
+        opt.classList.toggle('selected', parseInt(opt.dataset.val) === s[key]);
+      });
+    }
+    update('opts-sh', 'sh'); update('opts-sm', 'sm');
+    update('opts-eh', 'eh'); update('opts-em', 'em');
+  }
+
+  function formatTimeRange(pfx) {
+    var s = tpState[pfx];
+    return pad(s.sh) + ':' + pad(s.sm) + ' — ' + pad(s.eh) + ':' + pad(s.em);
+  }
+
+  window.toggleTimePicker = function (pfx) {
+    pfx = pfx || '';
+    var ddId = pfx ? pfx + '-time-dropdown' : 'time-dropdown';
+    var dd   = document.getElementById(ddId);
+    if (!dd) return;
+    var isOpen = dd.classList.contains('open');
+    /* close all first */
+    ['', 'nc'].forEach(function (p) {
+      var id = p ? p + '-time-dropdown' : 'time-dropdown';
+      var el = document.getElementById(id);
+      if (el) el.classList.remove('open');
+      tpOpen[p] = false;
+    });
+    if (!isOpen) { dd.classList.add('open'); tpOpen[pfx] = true; }
+  };
+
+  function closeTimePicker(pfx) {
+    var ddId = pfx ? pfx + '-time-dropdown' : 'time-dropdown';
+    var dd   = document.getElementById(ddId);
+    if (dd) dd.classList.remove('open');
+    tpOpen[pfx] = false;
+  }
+
+  window.confirmTimePicker = function (pfx) {
+    pfx = pfx || '';
+    var s   = tpState[pfx];
+    var inputId = pfx ? pfx + '-time' : 's-time';
+    var input   = document.getElementById(inputId);
+    if (input) input.value = formatTimeRange(pfx);
+    closeTimePicker(pfx);
+    showToast("กำหนดเวลา " + formatTimeRange(pfx) + " แล้ว", "success");
+  };
+
+  window.clearTimePicker = function (pfx) {
+    pfx = pfx || '';
+    tpState[pfx] = { sh: 8, sm: 0, eh: 17, em: 0 };
+    refreshTimeOptHighlights(pfx);
+    var inputId = pfx ? pfx + '-time' : 's-time';
+    var input   = document.getElementById(inputId);
+    if (input) input.value = '';
+  };
+
+  /* ══ MODAL ══ */
+  window.showModal = function (opts) {
     var iconEl     = document.getElementById("modal-icon");
     var titleEl    = document.getElementById("modal-title");
     var msgEl      = document.getElementById("modal-msg");
@@ -1091,7 +1327,14 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
     var confirmBtn = document.getElementById("modal-confirm");
     var cancelBtn  = document.getElementById("modal-cancel");
 
-    iconEl.innerHTML  = opts.icon || "ℹ️";
+    /* Icon: SVG-based */
+    var icons = {
+      warn:    '<svg width="26" height="26" fill="none" stroke="#92400e" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+      danger:  '<svg width="26" height="26" fill="none" stroke="#b91c1c" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+      info:    '<svg width="26" height="26" fill="none" stroke="#1B5E2B" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+      success: '<svg width="26" height="26" fill="none" stroke="#15803D" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>',
+    };
+    iconEl.innerHTML  = icons[opts.iconType] || icons.info;
     iconEl.className  = "modal-icon" + (opts.iconClass ? " " + opts.iconClass : "");
     titleEl.textContent = opts.title || "";
     msgEl.innerHTML   = opts.message || "";
@@ -1101,7 +1344,7 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
       inputEl.value           = opts.inputValue || "";
       inputEl.placeholder     = opts.inputPlaceholder;
       inputEl.type            = opts.inputType || "text";
-      setTimeout(function() { inputEl.focus(); }, 100);
+      setTimeout(function () { inputEl.focus(); }, 100);
     } else {
       inputWrap.style.display = "none";
       inputEl.value = "";
@@ -1112,82 +1355,82 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
     cancelBtn.style.display = opts.cancelText ? "" : "none";
     cancelBtn.textContent   = opts.cancelText || "ยกเลิก";
     window._modalConfirm    = opts.onConfirm || null;
-
-    modal.classList.add("open");
+    document.getElementById("modal").classList.add("open");
   };
 
-  window.confirmModal = function() {
+  window.confirmModal = function () {
     var val = document.getElementById("modal-input").value.trim();
     closeModal();
     if (window._modalConfirm) window._modalConfirm(val);
   };
 
-  window.closeModal = function() {
+  window.closeModal = function () {
     document.getElementById("modal").classList.remove("open");
   };
 
-  /* ══════════════════════════════════════════
-     TOAST
-  ══════════════════════════════════════════ */
-  window.showToast = function(msg, type) {
+  /* ══ TOAST ══ */
+  window.showToast = function (msg, type) {
     clearTimeout(toastTimer);
-    var t     = document.getElementById("toast");
-    var icons = { success:"✓", error:"✕", info:"ℹ", loading:"↻", warning:"⚠" };
-    document.getElementById("toast-icon").textContent = icons[type] || "ℹ";
+    var t   = document.getElementById("toast");
+    var svg = document.getElementById("toast-icon-svg");
+    var svgMap = {
+      success: '<polyline points="20 6 9 17 4 12"/>',
+      error:   '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>',
+      info:    '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>',
+      loading: '<line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>',
+      warning: '<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+    };
+    svg.innerHTML = svgMap[type] || svgMap.info;
+    svg.className = type === 'loading' ? 'spin' : '';
     document.getElementById("toast-text").textContent = msg;
     t.className = "toast toast-" + (type || "info") + " show";
-    if (type !== "loading") {
-      toastTimer = setTimeout(function() { t.classList.remove("show"); }, 3400);
-    }
+    if (type !== "loading") toastTimer = setTimeout(function () { t.classList.remove("show"); }, 3200);
   };
 
-  /* ══════════════════════════════════════════
-     DATE HELPERS
-  ══════════════════════════════════════════ */
+  /* ══ HELPERS ══ */
   function todayISO() {
     var d = new Date();
-    return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+    return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
   }
-
-  function pad(n) { return String(n).padStart(2,"0"); }
+  function pad(n) { return String(n).padStart(2, "0"); }
 
   function toShortThai(ds) {
     if (!ds) return "";
-    var d = new Date(ds+"T00:00:00");
-    return pad(d.getDate())+"/"+pad(d.getMonth()+1)+"/"+String(d.getFullYear()+543).slice(-2);
+    var d = new Date(ds + "T00:00:00");
+    return pad(d.getDate()) + "/" + pad(d.getMonth() + 1) + "/" + String(d.getFullYear() + 543).slice(-2);
   }
 
   function toFullThaiDate(ds) {
     if (!ds) return "";
-    var d = new Date(ds+"T00:00:00");
-    var m = ["","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน",
-             "กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"];
-    return d.getDate()+" "+m[d.getMonth()+1]+" "+(d.getFullYear()+543);
+    var d = new Date(ds + "T00:00:00");
+    var m = ["", "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+             "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+    return d.getDate() + " " + m[d.getMonth() + 1] + " " + (d.getFullYear() + 543);
   }
 
-  /* ══════════════════════════════════════════
-     PAGE NAV
-  ══════════════════════════════════════════ */
-  window.switchPage = function(p) {
-    document.querySelectorAll(".page").forEach(function(el){ el.classList.remove("active"); });
-    document.getElementById("page-"+p).classList.add("active");
-    document.querySelectorAll(".nav-tab").forEach(function(el){ el.classList.remove("active"); });
-    var tab = document.getElementById("tab-"+p);
-    if (tab) tab.classList.add("active");
+  function escHtml(s) {
+    return String(s || "")
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
 
+  /* ══ PAGE NAV ══ */
+  window.switchPage = function (p) {
+    document.querySelectorAll(".page").forEach(function (el) { el.classList.remove("active"); });
+    document.getElementById("page-" + p).classList.add("active");
+    document.querySelectorAll(".nav-tab").forEach(function (el) { el.classList.remove("active"); });
+    var tab = document.getElementById("tab-" + p);
+    if (tab) tab.classList.add("active");
     if (p === "hr" && hrUnlocked) showHrTab("list");
     if (p === "sign") loadAndPopulateCourses();
-    // Reset PIN screen if locked
     if (p === "hr" && !hrUnlocked) {
-      document.getElementById("hr-pin").style.display = "";
+      document.getElementById("hr-pin").style.display  = "";
       document.getElementById("hr-main").style.display = "none";
     }
   };
 
-  /* ══════════════════════════════════════════
-     COURSE SELECT → POPULATE DETAIL
-  ══════════════════════════════════════════ */
-  window.onCourseChange = function() {
+  /* ══ COURSE SELECT CHANGE ══ */
+  window.onCourseChange = function () {
     var course = getSelectedCourse();
     var panel  = document.getElementById("course-detail-panel");
     if (!course) {
@@ -1200,15 +1443,12 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
     document.getElementById("cdp-time").textContent       = course.time || "—";
     document.getElementById("cdp-location").textContent   = course.location || "—";
     document.getElementById("cdp-instructor").textContent = course.instructor || "—";
-    // ซิงค์วันที่
     if (course.date) document.getElementById("s-date").value = course.date;
-    document.getElementById("s-time").value = course.time || "";
+    if (course.time) document.getElementById("s-time").value = course.time;
   };
 
-  /* ══════════════════════════════════════════
-     FORM SUBMIT
-  ══════════════════════════════════════════ */
-  window.submitForm = function() {
+  /* ══ SUBMIT ══ */
+  window.submitForm = function () {
     var date      = document.getElementById("s-date").value;
     var prefix    = document.getElementById("s-prefix").value;
     var firstName = document.getElementById("s-firstname").value.trim();
@@ -1218,63 +1458,63 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
     var position  = document.getElementById("s-position").value.trim();
     var dept      = document.getElementById("s-dept").value.trim();
     var site      = document.getElementById("s-site").value;
+    var timeVal   = document.getElementById("s-time").value.trim();
     var course    = getSelectedCourse();
 
-    // Validate
-    if (!date) { showModal({icon:"⚠️",iconClass:"icon-warn",title:"ยังไม่ได้เลือกวันที่",message:"กรุณาระบุวันที่อบรม",confirmText:"รับทราบ"}); return; }
-    if (!course) { showModal({icon:"📚",iconClass:"icon-warn",title:"ยังไม่ได้เลือกหัวข้ออบรม",message:"กรุณาเลือกหัวข้ออบรมก่อนลงทะเบียน",confirmText:"รับทราบ"}); return; }
-    if (!firstName || !lastName) { showModal({icon:"👤",iconClass:"icon-warn",title:"กรุณากรอกชื่อ-นามสกุล",message:"ชื่อและนามสกุลเป็นข้อมูลจำเป็น",confirmText:"รับทราบ"}); return; }
-    if (!dept) { showModal({icon:"🏢",iconClass:"icon-warn",title:"กรุณาระบุหน่วยงาน",message:"โปรดกรอกหน่วยงาน / แผนกที่สังกัด",confirmText:"รับทราบ"}); return; }
-    if (!site) { showModal({icon:"📍",iconClass:"icon-warn",title:"กรุณาเลือกสาขา",message:"โปรดเลือกสถานที่สังกัดของท่าน",confirmText:"รับทราบ"}); return; }
+    if (!course)    return alert_modal("ยังไม่ได้เลือกหัวข้ออบรม", "กรุณาเลือกหัวข้ออบรมก่อนลงทะเบียน", "warn");
+    if (!date)      return alert_modal("ยังไม่ได้เลือกวันที่", "กรุณาระบุวันที่อบรม", "warn");
+    if (!timeVal)   return alert_modal("ยังไม่ได้เลือกเวลา", "กรุณาเลือกช่วงเวลาอบรมก่อน", "warn");
+    if (!firstName || !lastName) return alert_modal("กรอกชื่อ-นามสกุล", "ชื่อและนามสกุลเป็นข้อมูลจำเป็น", "warn");
+    if (!dept)  return alert_modal("กรอกหน่วยงาน", "โปรดระบุหน่วยงาน / แผนกที่สังกัด", "warn");
+    if (!site)  return alert_modal("เลือกสาขา", "โปรดเลือกสาขาที่สังกัด", "warn");
 
     var btn = document.getElementById("btn-submit");
     btn.disabled = true;
     document.getElementById("loading-bar").style.display = "block";
     showToast("กำลังบันทึก...", "loading");
 
-    var now     = new Date();
-    var thTime  = pad(now.getHours())+":"+pad(now.getMinutes());
+    var now = new Date();
     var rec = {
       id: Date.now(), prefix, firstName, lastName, empCode, idCard,
       position, dept, site,
       course: course.name, trainingDate: date,
-      time: thTime,
-      location: course.location || "", instructor: course.instructor || "",
-      courseTime: course.time || ""
+      courseTime: timeVal,
+      time: pad(now.getHours()) + ":" + pad(now.getMinutes()),
+      location: course.location || "", instructor: course.instructor || ""
     };
 
-    // Store in session memory
     attendanceData.push(rec);
 
-    // Send to Google Sheets
     fetch(SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
+      method: "POST", mode: "no-cors",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "attendance", ...rec })
-    }).then(function() {
-      showSuccess(rec, course);
-      showToast("ลงทะเบียนสำเร็จ ✓", "success");
-    }).catch(function() {
-      // still show success locally even if network fails
-      showSuccess(rec, course);
-      showToast("บันทึกเฉพาะเครื่องแล้ว (ไม่มีเน็ต)", "warning");
-    }).finally(function() {
+      body: JSON.stringify({ action: "attendance", data: rec })
+    }).then(function () {
+      showSuccess(rec);
+      showToast("ลงทะเบียนสำเร็จ", "success");
+    }).catch(function () {
+      showSuccess(rec);
+      showToast("บันทึกเฉพาะเครื่อง (ไม่มีเน็ต)", "warning");
+    }).finally(function () {
       document.getElementById("loading-bar").style.display = "none";
     });
   };
 
-  function showSuccess(rec, course) {
+  function alert_modal(title, msg, type) {
+    showModal({ iconType: type || 'warn', iconClass: 'icon-' + (type || 'warn'), title: title, message: msg, confirmText: "รับทราบ" });
+  }
+
+  function showSuccess(rec) {
     document.getElementById("success-name").textContent   = rec.prefix + " " + rec.firstName + " " + rec.lastName;
     document.getElementById("success-course").textContent = rec.course;
-    document.getElementById("success-date").textContent   = toFullThaiDate(rec.trainingDate);
+    document.getElementById("success-date").textContent   = toFullThaiDate(rec.trainingDate) + " · " + rec.courseTime;
     document.getElementById("success-loc").textContent    = rec.location || "—";
     document.getElementById("form-wrap").style.display    = "none";
     document.getElementById("success-wrap").style.display = "";
   }
 
-  window.resetForm = function() {
-    ["s-firstname","s-lastname","s-empcode","s-idcard","s-position","s-dept"].forEach(function(id) {
+  window.resetForm = function () {
+    ["s-firstname","s-lastname","s-empcode","s-idcard","s-position","s-dept"].forEach(function (id) {
       document.getElementById(id).value = "";
     });
     document.getElementById("s-prefix").value = "นาย";
@@ -1287,32 +1527,29 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
     document.getElementById("btn-submit").disabled        = false;
   };
 
-  /* ══════════════════════════════════════════
-     LOAD COURSES
-  ══════════════════════════════════════════ */
+  /* ══ LOAD COURSES ══ */
   function loadAndPopulateCourses() {
     var sel = document.getElementById("s-course");
     sel.innerHTML = '<option value="">กำลังโหลดหัวข้ออบรม...</option>';
     sel.disabled  = true;
-
     fetch(SCRIPT_URL + "?action=getCourses")
-      .then(function(r) { return r.json(); })
-      .then(function(data) {
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
         cloudCourses = data.courses || [];
         populateCourseSelect(sel);
       })
-      .catch(function() {
-        sel.innerHTML = '<option value="">ไม่สามารถโหลดได้ — กรุณาลองใหม่</option>';
+      .catch(function () {
+        sel.innerHTML = '<option value="">โหลดไม่ได้ — กรุณาลองใหม่</option>';
         sel.disabled  = false;
       });
   }
 
   function populateCourseSelect(sel) {
-    var active = cloudCourses.filter(function(c){ return c.active; });
+    var active = cloudCourses.filter(function (c) { return c.active; });
     if (active.length) {
       sel.innerHTML = '<option value="">— เลือกหัวข้ออบรม —</option>' +
-        active.map(function(c, i) {
-          return '<option value="'+i+'">'+escHtml(c.name)+'</option>';
+        active.map(function (c, i) {
+          return '<option value="' + i + '">' + escHtml(c.name) + '</option>';
         }).join("");
     } else {
       sel.innerHTML = '<option value="">ยังไม่มีหัวข้อเปิดรับ</option>';
@@ -1323,14 +1560,12 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
   function getSelectedCourse() {
     var idx    = document.getElementById("s-course").value;
     if (idx === "") return null;
-    var active = cloudCourses.filter(function(c){ return c.active; });
+    var active = cloudCourses.filter(function (c) { return c.active; });
     return active[parseInt(idx)] || null;
   }
 
-  /* ══════════════════════════════════════════
-     HR: PIN
-  ══════════════════════════════════════════ */
-  window.checkPin = function() {
+  /* ══ HR PIN ══ */
+  window.checkPin = function () {
     var input = document.getElementById("pin-input").value;
     var errEl = document.getElementById("pin-err");
     if (input === PIN_VALUE) {
@@ -1342,109 +1577,94 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
     } else {
       errEl.style.display = "flex";
       document.getElementById("pin-input").value = "";
-      setTimeout(function() { errEl.style.display = "none"; }, 3200);
+      setTimeout(function () { errEl.style.display = "none"; }, 3000);
     }
   };
 
-  window.changePin = function() {
+  window.changePin = function () {
     showModal({
-      icon: "🔒", iconClass: "icon-info",
+      iconType: "info", iconClass: "icon-info",
       title: "เปลี่ยน PIN ผู้ดูแล",
-      message: "กรอก PIN ใหม่ (ตัวเลข 4–8 หลัก)<br><small style='color:var(--tm)'>PIN ปัจจุบัน: ใช้ค่าเดิมที่จำไว้</small>",
-      inputPlaceholder: "PIN ใหม่",
-      inputType: "password",
-      confirmText: "บันทึก PIN",
-      cancelText: "ยกเลิก",
-      onConfirm: function(val) {
-        if (!val || val.length < 4) {
-          showToast("PIN ต้องมีอย่างน้อย 4 หลัก", "error");
-          return;
-        }
-        if (!/^\d+$/.test(val)) {
-          showToast("PIN ต้องเป็นตัวเลขเท่านั้น", "error");
-          return;
-        }
+      message: "กรอก PIN ใหม่ (ตัวเลข 4–8 หลัก)",
+      inputPlaceholder: "PIN ใหม่", inputType: "password",
+      confirmText: "บันทึก PIN", cancelText: "ยกเลิก",
+      onConfirm: function (val) {
+        if (!val || val.length < 4) { showToast("PIN ต้องมีอย่างน้อย 4 หลัก", "error"); return; }
+        if (!/^\d+$/.test(val))     { showToast("PIN ต้องเป็นตัวเลขเท่านั้น", "error"); return; }
         PIN_VALUE = val;
-        showModal({
-          icon:"✅",iconClass:"icon-success",
-          title:"เปลี่ยน PIN สำเร็จ",
-          message:"PIN ใหม่ถูกบันทึกแล้ว<br><small style='color:var(--tm)'>โปรดจำ PIN ใหม่ไว้ — จะต้องใช้เมื่อเข้าระบบครั้งหน้า</small>",
-          confirmText:"รับทราบ"
-        });
+        showModal({ iconType: "success", iconClass: "icon-success", title: "เปลี่ยน PIN สำเร็จ", message: "PIN ใหม่ถูกบันทึกแล้ว กรุณาจำ PIN ไว้", confirmText: "รับทราบ" });
       }
     });
   };
 
-  /* ══════════════════════════════════════════
-     HR: TABS
-  ══════════════════════════════════════════ */
-  window.showHrTab = function(tab) {
-    document.getElementById("hrtab-list").classList.toggle("active", tab==="list");
-    document.getElementById("hrtab-courses").classList.toggle("active", tab==="courses");
-    document.getElementById("hrsection-list").style.display    = tab==="list" ? "" : "none";
-    document.getElementById("hrsection-courses").style.display = tab==="courses" ? "" : "none";
+  /* ══ HR TABS ══ */
+  window.showHrTab = function (tab) {
+    document.getElementById("hrtab-list").classList.toggle("active", tab === "list");
+    document.getElementById("hrtab-courses").classList.toggle("active", tab === "courses");
+    document.getElementById("hrsection-list").style.display    = tab === "list" ? "" : "none";
+    document.getElementById("hrsection-courses").style.display = tab === "courses" ? "" : "none";
     if (tab === "list") renderDashboard();
     if (tab === "courses") renderCourseSection();
   };
 
-  /* ══════════════════════════════════════════
-     HR: DASHBOARD
-  ══════════════════════════════════════════ */
+  /* ══ DASHBOARD ══ */
   function renderDashboard() {
     var data  = attendanceData;
     var dates = [];
-    data.forEach(function(r) {
-      if (r.trainingDate && dates.indexOf(r.trainingDate) < 0) dates.push(r.trainingDate);
-    });
+    data.forEach(function (r) { if (r.trainingDate && dates.indexOf(r.trainingDate) < 0) dates.push(r.trainingDate); });
     dates.sort().reverse();
 
     if (!activeDate || dates.indexOf(activeDate) < 0) activeDate = dates[0] || "";
 
-    // Date tabs
     var tabsEl = document.getElementById("sheet-tabs");
-    if (dates.length === 0) {
-      tabsEl.innerHTML = '<span class="no-data-hint">ยังไม่มีข้อมูลในเซสชันนี้</span>';
-    } else {
-      tabsEl.innerHTML = dates.map(function(d) {
-        return '<button class="sheet-tab '+(d===activeDate?"active":"")+
-          '" onclick="activeDate=\''+d+'\';renderDashboard()">'+
-          toShortThai(d)+'</button>';
-      }).join("");
-    }
+    tabsEl.innerHTML = dates.length === 0
+      ? '<span class="no-data-hint">ยังไม่มีข้อมูลในเซสชันนี้</span>'
+      : dates.map(function (d) {
+          return '<button class="sheet-tab ' + (d === activeDate ? "active" : "") + '" ' +
+                 'onclick="window.__setDate(\'' + d + '\')">' + toShortThai(d) + '</button>';
+        }).join("");
 
-    // Metrics
-    var filtered = data.filter(function(r){ return r.trainingDate === activeDate; });
-    var male     = filtered.filter(function(r){ return r.prefix === "นาย"; }).length;
-    var female   = filtered.filter(function(r){ return r.prefix !== "นาย"; }).length;
+    var filtered = data.filter(function (r) { return r.trainingDate === activeDate; });
+    var male     = filtered.filter(function (r) { return r.prefix === "นาย"; }).length;
+    var female   = filtered.length - male;
     var courses  = {};
-    filtered.forEach(function(r){ courses[r.course] = (courses[r.course]||0)+1; });
+    filtered.forEach(function (r) { courses[r.course] = (courses[r.course] || 0) + 1; });
     var nCourses = Object.keys(courses).length;
 
-    document.getElementById("metrics").innerHTML =
-      '<div class="metric"><div class="metric-icon">👥</div><div class="metric-n">'+filtered.length+'</div><div class="metric-l">ผู้เข้าอบรมรวม</div></div>'+
-      '<div class="metric"><div class="metric-icon">👨</div><div class="metric-n">'+male+'</div><div class="metric-l">ชาย</div></div>'+
-      '<div class="metric"><div class="metric-icon">👩</div><div class="metric-n">'+female+'</div><div class="metric-l">หญิง</div></div>'+
-      '<div class="metric"><div class="metric-icon">📚</div><div class="metric-n">'+nCourses+'</div><div class="metric-l">หลักสูตร</div></div>';
+    var icons = [
+      '<svg width="14" height="14" fill="none" stroke="var(--g)" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+      '<svg width="14" height="14" fill="none" stroke="var(--g)" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+      '<svg width="14" height="14" fill="none" stroke="var(--g)" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+      '<svg width="14" height="14" fill="none" stroke="var(--g)" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+    ];
 
-    // Course filter
+    var labels = [["ผู้เข้าอบรมรวม", filtered.length], ["ชาย", male], ["หญิง", female], ["หลักสูตร", nCourses]];
+    document.getElementById("metrics").innerHTML = labels.map(function (l, i) {
+      return '<div class="metric"><div class="metric-icon">' + icons[i] + '</div>' +
+             '<div class="metric-n">' + l[1] + '</div>' +
+             '<div class="metric-l">' + l[0] + '</div></div>';
+    }).join("");
+
     var filterSel = document.getElementById("filter-course");
     var fv = filterSel.value;
-    var cList = Object.keys(courses);
     filterSel.innerHTML = '<option value="">ทุกหัวข้อ</option>' +
-      cList.map(function(c){ return '<option value="'+escHtml(c)+'">'+escHtml(c)+'</option>'; }).join("");
+      Object.keys(courses).map(function (c) { return '<option value="' + escHtml(c) + '">' + escHtml(c) + '</option>'; }).join("");
     if (fv) filterSel.value = fv;
 
     renderList();
   }
 
-  window.renderList = function() {
+  /* expose for onclick */
+  window.__setDate = function (d) { activeDate = d; renderDashboard(); };
+
+  window.renderList = function () {
     var data     = attendanceData;
-    var filtered = data.filter(function(r){ return r.trainingDate === activeDate; });
+    var filtered = data.filter(function (r) { return r.trainingDate === activeDate; });
     var q        = (document.getElementById("search-input").value || "").toLowerCase();
     var fc       = document.getElementById("filter-course").value;
     var fs       = document.getElementById("filter-site").value;
 
-    var shown = filtered.filter(function(r) {
+    var shown = filtered.filter(function (r) {
       var matchQ  = !q || ((r.firstName||"")+(r.lastName||"")+(r.dept||"")+(r.empCode||"")).toLowerCase().includes(q);
       var matchFC = !fc || r.course === fc;
       var matchFS = !fs || r.site === fs;
@@ -1454,139 +1674,113 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
     var container = document.getElementById("list-container");
     if (shown.length === 0) {
       container.innerHTML =
-        '<div class="empty-state">'+
-        '<div class="empty-icon">'+(filtered.length===0?"📋":"🔍")+'</div>'+
-        '<p>'+(filtered.length===0?"ยังไม่มีข้อมูลในวันที่เลือก<br><small>ข้อมูลจะปรากฏเมื่อมีการลงทะเบียน</small>":"ไม่พบข้อมูลที่ค้นหา")+'</p>'+
+        '<div class="empty-state">' +
+        '<div class="empty-icon-wrap">' +
+        '<svg width="22" height="22" fill="none" stroke="var(--tm)" stroke-width="1.5" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>' +
+        '</div>' +
+        '<p>' + (filtered.length === 0 ? "ยังไม่มีข้อมูลในวันที่เลือก" : "ไม่พบข้อมูลที่ค้นหา") + '</p>' +
         '</div>';
       return;
     }
 
-    container.innerHTML = shown.map(function(r, i) {
-      return '<div class="list-row">'+
-        '<div class="row-num">'+(i+1)+'</div>'+
-        '<div class="row-info">'+
-          '<div class="row-name">'+escHtml((r.prefix||"")+" "+(r.firstName||"")+" "+(r.lastName||""))+'</div>'+
-          '<div class="row-sub">'+escHtml(r.dept||"—")+(r.position?" · "+escHtml(r.position):"")+'</div>'+
-          '<div class="row-tags">'+
-            '<span class="tag tag-site">'+escHtml(r.site||"—")+'</span>'+
-            '<span class="tag tag-course">'+escHtml(r.course||"—")+'</span>'+
-            (r.empCode?'<span class="tag tag-emp">'+escHtml(r.empCode)+'</span>':"")+
-            (r.idCard?'<span class="tag tag-id">ID</span>':"")+
-          '</div>'+
-        '</div>'+
-        '<div class="row-meta"><div class="row-time">'+escHtml(r.time||"")+'</div></div>'+
-      '</div>';
+    container.innerHTML = shown.map(function (r, i) {
+      return '<div class="list-row">' +
+        '<div class="row-num">' + (i + 1) + '</div>' +
+        '<div class="row-info">' +
+          '<div class="row-name">' + escHtml((r.prefix||"") + " " + (r.firstName||"") + " " + (r.lastName||"")) + '</div>' +
+          '<div class="row-sub">' + escHtml(r.dept||"—") + (r.position ? " · " + escHtml(r.position) : "") + '</div>' +
+          '<div class="row-tags">' +
+            '<span class="tag tag-site">' + escHtml(r.site||"—") + '</span>' +
+            '<span class="tag tag-course">' + escHtml(r.course||"—") + '</span>' +
+            (r.empCode ? '<span class="tag tag-emp">' + escHtml(r.empCode) + '</span>' : "") +
+            (r.idCard  ? '<span class="tag tag-id"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg> ID</span>' : "") +
+          '</div>' +
+        '</div>' +
+        '<div class="row-meta"><div class="row-time">' + escHtml(r.time||"") + '</div></div>' +
+        '</div>';
     }).join("");
   };
 
-  /* ══════════════════════════════════════════
-     EXPORT EXCEL
-  ══════════════════════════════════════════ */
-  window.exportExcel = function() {
+  /* ══ EXCEL EXPORT ══ */
+  window.exportExcel = function () {
     var data     = attendanceData;
-    var filtered = data.filter(function(r){ return r.trainingDate === activeDate; });
+    var filtered = data.filter(function (r) { return r.trainingDate === activeDate; });
 
     if (!filtered.length) {
       showModal({
-        icon:"📋",iconClass:"icon-warn",
-        title:"ไม่มีข้อมูลในวันนี้",
-        message:"กรุณาเลือกวันที่มีข้อมูลก่อนออกรายงาน<br><small style='color:var(--tm)'>หรือยังไม่มีการลงทะเบียนในเซสชันนี้</small>",
-        confirmText:"ตกลง"
+        iconType: "warn", iconClass: "icon-warn",
+        title: "ไม่มีข้อมูล",
+        message: "ไม่พบข้อมูลในวันที่เลือก กรุณาเลือกวันที่มีข้อมูลก่อนออกรายงาน",
+        confirmText: "ตกลง"
       });
       return;
     }
 
-    showToast("กำลังสร้างไฟล์ Excel...", "loading");
+    showToast("กำลังสร้างไฟล์...", "loading");
 
     var WB = XLSX.utils.book_new();
     var byCourse = {};
-    filtered.forEach(function(r) {
+    filtered.forEach(function (r) {
       if (!byCourse[r.course]) byCourse[r.course] = [];
       byCourse[r.course].push(r);
     });
 
-    Object.entries(byCourse).forEach(function([cName, rows]) {
-      var ci      = cloudCourses.find(function(c){ return c.name === cName; }) || {};
+    Object.entries(byCourse).forEach(function (entry) {
+      var cName = entry[0], rows = entry[1];
+      var ci      = cloudCourses.find(function (c) { return c.name === cName; }) || {};
       var dateStr = rows[0] ? toFullThaiDate(rows[0].trainingDate) : "";
-      var timeStr = ci.time || rows[0].courseTime || "08.00-17.00น.";
+      var timeStr = rows[0].courseTime || ci.time || "08.00-17.00น.";
       var loc     = ci.location || rows[0].location || "";
       var instr   = ci.instructor || rows[0].instructor || "วิทยากรภายใน บริษัท เคมีแมน จำกัด (มหาชน)";
-      var type    = ci.type || "พนักงาน";
 
-      /* ─── แถว header ตาม IMAFHR03 ─── */
       var headerRows = [
-        ["ใบลงทะเบียนการฝึกอบรม","","","","","","","","","","","","KK","=COUNTIF(L8:L207,\"KK\")","ชาย","=COUNTIF(D8:D207,\"นาย\")"],
-        ["หลักสูตร "+cName,"","","","","","","","","","","","BKK","=COUNTIF(L8:L207,\"BKK\")","หญิง","=SUM(COUNTIF(D8:D207,\"นาง\"),COUNTIF(D8:D207,\"น.ส.\"))"],
-        ["วันที่ "+dateStr+"  เวลา "+timeStr+"  สถานที่อบรม  "+loc,"","","","","","","","","","","","TK","=COUNTIF(L8:L207,\"TK\")","",""],
-        ["โดย  "+instr,"","","","","","","","","","","","RY","=COUNTIF(L8:L207,\"RY\")","",""],
-        ["","","","","","","","","","","","","PBB","=COUNTIF(L8:L207,\"PBB\")","รวม","=SUM(N1:N5)"],
+        ["ใบลงทะเบียนการฝึกอบรม","","","","","","","","","","","","KK","","ชาย",""],
+        ["หลักสูตร " + cName,"","","","","","","","","","","","BKK","","หญิง",""],
+        ["วันที่ " + dateStr + "  เวลา " + timeStr + "  สถานที่อบรม  " + loc,"","","","","","","","","","","","TK","","",""],
+        ["โดย  " + instr,"","","","","","","","","","","","RY","","",""],
+        ["","","","","","","","","","","","","PBB","","รวม",""],
         [],
-        /* แถวหัวตาราง */
         ["ลำดับ","รหัสพนักงาน","เลขบัตรประชาชน (ID)","คำนำหน้า","ชื่อ","นามสกุล","ตำแหน่ง","หน่วยงาน / แผนก","ลายมือชื่อ (เช้า)","ลายมือชื่อ (บ่าย)","หมายเหตุ","สาขาสังกัด","","","",""],
       ];
 
-      /* ─── แถวข้อมูล ─── */
-      var dataRows = rows.map(function(r, i) {
-        return [
-          i+1,
-          r.empCode   || "",
-          r.idCard    || "",
-          r.prefix    || "",
-          r.firstName || "",
-          r.lastName  || "",
-          r.position  || "",
-          r.dept      || "",
-          "",  /* ลายมือชื่อเช้า */
-          "",  /* ลายมือชื่อบ่าย */
-          "",  /* หมายเหตุ */
-          r.site      || "",
-          "","","",""
-        ];
+      var dataRows = rows.map(function (r, i) {
+        return [i + 1, r.empCode||"", r.idCard||"", r.prefix||"",
+                r.firstName||"", r.lastName||"", r.position||"", r.dept||"",
+                "", "", "", r.site||"", "", "", "", ""];
       });
 
-      var allRows = [...headerRows, ...dataRows];
-      var ws      = XLSX.utils.aoa_to_sheet(allRows);
-
-      /* ─── ความกว้างคอลัมน์ ─── */
+      var allRows = headerRows.concat(dataRows);
+      var ws = XLSX.utils.aoa_to_sheet(allRows);
       ws["!cols"] = [
         {wch:7},{wch:13},{wch:20},{wch:10},{wch:16},{wch:16},
         {wch:18},{wch:18},{wch:22},{wch:22},{wch:14},{wch:10}
       ];
-
-      /* ─── Merges ─── */
       ws["!merges"] = [
-        {s:{r:0,c:0},e:{r:0,c:11}}, // แถว 1 A-L
+        {s:{r:0,c:0},e:{r:0,c:11}},
         {s:{r:1,c:0},e:{r:1,c:11}},
         {s:{r:2,c:0},e:{r:2,c:11}},
         {s:{r:3,c:0},e:{r:3,c:11}},
         {s:{r:4,c:0},e:{r:4,c:11}},
       ];
 
-      var sheetName = (cName.substring(0,22)+" "+(activeDate||"").slice(5).replace("-","/")).substring(0,31);
+      var sheetName = (cName.substring(0, 22) + " " + (activeDate || "").slice(5).replace("-", "/")).substring(0, 31);
       XLSX.utils.book_append_sheet(WB, ws, sheetName);
     });
 
-    XLSX.writeFile(WB, "IMAFHR03_"+activeDate+".xlsx");
-    setTimeout(function(){ showToast("ดาวน์โหลด Excel เรียบร้อย ✓", "success"); }, 500);
+    XLSX.writeFile(WB, "IMAFHR03_" + activeDate + ".xlsx");
+    setTimeout(function () { showToast("ดาวน์โหลด Excel สำเร็จ", "success"); }, 600);
   };
 
-  /* ══════════════════════════════════════════
-     CLEAR DATE DATA
-  ══════════════════════════════════════════ */
-  window.clearDateData = function() {
-    if (!activeDate) {
-      showToast("ไม่ได้เลือกวันที่", "error");
-      return;
-    }
+  /* ══ CLEAR DATE ══ */
+  window.clearDateData = function () {
+    if (!activeDate) { showToast("ไม่ได้เลือกวันที่", "error"); return; }
     showModal({
-      icon:"🗑️",iconClass:"icon-danger",
-      title:"ยืนยันลบข้อมูล",
-      message:"ต้องการลบข้อมูลวันที่ <strong>"+toShortThai(activeDate)+"</strong> ทั้งหมดใช่หรือไม่?<br><br><small style='color:var(--r)'>⚠ การกระทำนี้ไม่สามารถย้อนกลับได้</small>",
-      confirmText:"ลบข้อมูล",
-      confirmType:"danger",
-      cancelText:"ยกเลิก",
-      onConfirm: function() {
-        attendanceData = attendanceData.filter(function(r){ return r.trainingDate !== activeDate; });
+      iconType: "danger", iconClass: "icon-danger",
+      title: "ยืนยันลบข้อมูล",
+      message: "ต้องการลบข้อมูลวันที่ <strong>" + toShortThai(activeDate) + "</strong> ทั้งหมดใช่หรือไม่?<br><small style='color:var(--r)'>การกระทำนี้ไม่สามารถย้อนกลับได้</small>",
+      confirmText: "ลบข้อมูล", confirmType: "danger", cancelText: "ยกเลิก",
+      onConfirm: function () {
+        attendanceData = attendanceData.filter(function (r) { return r.trainingDate !== activeDate; });
         activeDate = "";
         renderDashboard();
         showToast("ลบข้อมูลสำเร็จ", "success");
@@ -1594,35 +1788,29 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
     });
   };
 
-  /* ══════════════════════════════════════════
-     COURSE MANAGEMENT
-  ══════════════════════════════════════════ */
-  function renderCourseSection() {
-    loadAndRenderCourseList();
-  }
+  /* ══ COURSE MANAGEMENT ══ */
+  function renderCourseSection() { loadAndRenderCourseList(); }
 
   function loadAndRenderCourseList() {
     var listEl = document.getElementById("course-list");
     listEl.innerHTML =
-      '<div class="empty-state">'+
-        '<div class="spin-wrap">'+
-          '<svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1B5E2B" stroke-width="2">'+
-            '<line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>'+
-            '<line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>'+
-            '<line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>'+
-            '<line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>'+
-          '</svg>'+
-        '</div><p>กำลังโหลดหลักสูตร...</p>'+
-      '</div>';
+      '<div class="empty-state">' +
+      '<div class="spin-wrap"><svg class="spin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--g)" stroke-width="2">' +
+      '<line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>' +
+      '<line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>' +
+      '<line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>' +
+      '<line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>' +
+      '</svg></div><p>กำลังโหลด...</p></div>';
 
-    fetch(SCRIPT_URL+"?action=getCourses")
-      .then(function(r){ return r.json(); })
-      .then(function(data) {
-        cloudCourses = data.courses || [];
-        renderCourseList();
-      })
-      .catch(function() {
-        listEl.innerHTML = '<div class="empty-state"><div class="empty-icon">⚠️</div><p>โหลดข้อมูลไม่ได้<br><small>ตรวจสอบการเชื่อมต่อ</small></p></div>';
+    fetch(SCRIPT_URL + "?action=getCourses")
+      .then(function (r) { return r.json(); })
+      .then(function (data) { cloudCourses = data.courses || []; renderCourseList(); })
+      .catch(function () {
+        listEl.innerHTML =
+          '<div class="empty-state"><div class="empty-icon-wrap">' +
+          '<svg width="22" height="22" fill="none" stroke="var(--tm)" stroke-width="1.5" viewBox="0 0 24 24">' +
+          '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
+          '</div><p>โหลดข้อมูลไม่ได้<br><small>ตรวจสอบการเชื่อมต่อ</small></p></div>';
       });
   }
 
@@ -1630,86 +1818,98 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
     var listEl = document.getElementById("course-list");
     if (cloudCourses.length === 0) {
       listEl.innerHTML =
-        '<div class="empty-state">'+
-          '<div class="empty-icon">📚</div>'+
-          '<p>ยังไม่มีหลักสูตร<br><small>เพิ่มหลักสูตรแรกได้เลย</small></p>'+
-        '</div>';
+        '<div class="empty-state">' +
+        '<div class="empty-icon-wrap">' +
+        '<svg width="22" height="22" fill="none" stroke="var(--tm)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>' +
+        '</div><p>ยังไม่มีหลักสูตร<br><small>เพิ่มหลักสูตรแรกได้เลย</small></p></div>';
       return;
     }
-    listEl.innerHTML = cloudCourses.map(function(c, i) {
-      return '<div class="course-row '+(c.active?"":"course-hidden")+'">'+
-        '<div class="course-left">'+
-          '<div class="course-dot '+(c.active?"dot-active":"dot-hidden")+'"></div>'+
-          '<div style="min-width:0;flex:1">'+
-            '<div class="course-name">'+escHtml(c.name)+'</div>'+
-            '<div class="course-meta">'+
-              (c.date?"📅 "+toFullThaiDate(c.date)+" &nbsp;":" ")+
-              (c.time?"⏰ "+escHtml(c.time)+" &nbsp;":"")+
-              (c.type?"🏷 "+escHtml(c.type):" ")+
-            '</div>'+
-            '<div class="course-meta">'+
-              (c.location?"📍 "+escHtml(c.location)+" &nbsp;":"")+
-              (c.instructor?"👤 "+escHtml(c.instructor):" ")+
-            '</div>'+
-            (c.note?'<div class="course-meta" style="color:var(--a)">📝 '+escHtml(c.note)+'</div>':"")+
-          '</div>'+
-        '</div>'+
-        '<div class="course-actions">'+
-          '<button class="btn btn-xs '+(c.active?"btn-warning":"btn-ok-outline")+'" onclick="toggleCourse('+i+')">'+
-            (c.active?"ซ่อน":"แสดง")+
-          '</button>'+
-          '<button class="btn btn-xs btn-danger-xs" onclick="deleteCourse('+i+')">ลบ</button>'+
-        '</div>'+
+
+    var calIcon  = '<svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+    var clkIcon  = '<svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+    var pinIcon  = '<svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+    var usrIcon  = '<svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+    var tagIcon  = '<svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>';
+
+    listEl.innerHTML = cloudCourses.map(function (c, i) {
+      return '<div class="course-row ' + (c.active ? "" : "course-hidden") + '">' +
+        '<div class="course-left">' +
+          '<div class="course-dot ' + (c.active ? "dot-active" : "dot-hidden") + '"></div>' +
+          '<div style="min-width:0;flex:1">' +
+            '<div class="course-name">' + escHtml(c.name) + '</div>' +
+            '<div class="course-meta">' +
+              (c.date ? '<span class="course-meta-item">' + calIcon + escHtml(toFullThaiDate(c.date)) + '</span>' : '') +
+              (c.time ? '<span class="course-meta-item">' + clkIcon + escHtml(c.time) + '</span>' : '') +
+              (c.type ? '<span class="course-meta-item">' + tagIcon + escHtml(c.type) + '</span>' : '') +
+            '</div>' +
+            '<div class="course-meta">' +
+              (c.location   ? '<span class="course-meta-item">' + pinIcon + escHtml(c.location) + '</span>' : '') +
+              (c.instructor ? '<span class="course-meta-item">' + usrIcon + escHtml(c.instructor) + '</span>' : '') +
+            '</div>' +
+            (c.note ? '<div class="course-meta"><span class="course-meta-item" style="color:var(--a)">' +
+              '<svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>' +
+              escHtml(c.note) + '</span></div>' : '') +
+          '</div>' +
+        '</div>' +
+        '<div class="course-actions">' +
+          '<button class="btn btn-xs ' + (c.active ? "btn-warning" : "btn-ok-outline") + '" onclick="toggleCourse(' + i + ')">' +
+            (c.active ? "ซ่อน" : "แสดง") +
+          '</button>' +
+          '<button class="btn btn-xs btn-danger-xs" onclick="deleteCourse(' + i + ')">' +
+            '<svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>' +
+            'ลบ' +
+          '</button>' +
+        '</div>' +
       '</div>';
     }).join("");
   }
 
-  window.addCourse = function() {
+  window.addCourse = function () {
     var name  = document.getElementById("nc-name").value.trim();
     var date  = document.getElementById("nc-date").value;
-    var time  = document.getElementById("nc-time").value.trim() || "08.00-17.00น.";
+    var time  = document.getElementById("nc-time").value.trim();
     var loc   = document.getElementById("nc-location").value.trim();
     var instr = document.getElementById("nc-instructor").value.trim() || "วิทยากรภายใน บริษัท เคมีแมน จำกัด (มหาชน)";
     var type  = document.getElementById("nc-type").value;
     var note  = document.getElementById("nc-note").value.trim();
 
-    if (!name) { showModal({icon:"⚠️",iconClass:"icon-warn",title:"กรุณากรอกชื่อหลักสูตร",message:"ชื่อหลักสูตรเป็นข้อมูลจำเป็น",confirmText:"ตกลง"}); return; }
-    if (!date) { showModal({icon:"📅",iconClass:"icon-warn",title:"กรุณาระบุวันที่อบรม",message:"วันที่อบรมเป็นข้อมูลจำเป็น",confirmText:"ตกลง"}); return; }
-    if (!loc)  { showModal({icon:"📍",iconClass:"icon-warn",title:"กรุณาระบุสถานที่อบรม",message:"สถานที่อบรมเป็นข้อมูลจำเป็น",confirmText:"ตกลง"}); return; }
+    if (!name) { alert_modal("กรอกชื่อหลักสูตร", "ชื่อหลักสูตรเป็นข้อมูลจำเป็น", "warn"); return; }
+    if (!date) { alert_modal("ระบุวันที่อบรม",    "วันที่อบรมเป็นข้อมูลจำเป็น",   "warn"); return; }
+    if (!time) { alert_modal("ระบุเวลาอบรม",      "กรุณาเลือกช่วงเวลาอบรม",        "warn"); return; }
+    if (!loc)  { alert_modal("ระบุสถานที่",        "สถานที่อบรมเป็นข้อมูลจำเป็น",  "warn"); return; }
 
-    cloudCourses.push({ name, active:true, date, time, location:loc, instructor:instr, type, note });
+    cloudCourses.push({ name, active: true, date, time, location: loc, instructor: instr, type, note });
     saveCourses();
     clearCourseForm();
     renderCourseList();
-    showToast("เพิ่มหลักสูตร «"+name+"» สำเร็จ", "success");
+    showToast("เพิ่มหลักสูตร «" + name + "» สำเร็จ", "success");
   };
 
-  window.clearCourseForm = function() {
-    ["nc-name","nc-date","nc-location","nc-note"].forEach(function(id){
+  window.clearCourseForm = function () {
+    ["nc-name","nc-date","nc-location","nc-note"].forEach(function (id) {
       document.getElementById(id).value = "";
     });
-    document.getElementById("nc-time").value       = "08.00-17.00น.";
+    document.getElementById("nc-time").value       = "";
     document.getElementById("nc-instructor").value = "วิทยากรภายใน บริษัท เคมีแมน จำกัด (มหาชน)";
     document.getElementById("nc-type").value       = "พนักงาน";
+    clearTimePicker('nc');
   };
 
-  window.toggleCourse = function(i) {
+  window.toggleCourse = function (i) {
     cloudCourses[i].active = !cloudCourses[i].active;
     saveCourses();
     renderCourseList();
     showToast(cloudCourses[i].active ? "แสดงหลักสูตรแล้ว" : "ซ่อนหลักสูตรแล้ว", "info");
   };
 
-  window.deleteCourse = function(i) {
+  window.deleteCourse = function (i) {
     var name = cloudCourses[i].name;
     showModal({
-      icon:"🗑️",iconClass:"icon-danger",
-      title:"ยืนยันลบหลักสูตร",
-      message:"ต้องการลบ <strong>«"+escHtml(name)+"»</strong> ออกจากระบบใช่หรือไม่?<br><small style='color:var(--r)'>ไม่สามารถย้อนกลับได้</small>",
-      confirmText:"ลบหลักสูตร",
-      confirmType:"danger",
-      cancelText:"ยกเลิก",
-      onConfirm: function() {
+      iconType: "danger", iconClass: "icon-danger",
+      title: "ยืนยันลบหลักสูตร",
+      message: "ต้องการลบ <strong>«" + escHtml(name) + "»</strong> ใช่หรือไม่?<br><small style='color:var(--r)'>ไม่สามารถย้อนกลับได้</small>",
+      confirmText: "ลบหลักสูตร", confirmType: "danger", cancelText: "ยกเลิก",
+      onConfirm: function () {
         cloudCourses.splice(i, 1);
         saveCourses();
         renderCourseList();
@@ -1721,38 +1921,16 @@ body{font-family:'Sarabun','Inter',system-ui,sans-serif;background:var(--bg);col
   function saveCourses() {
     showToast("กำลังบันทึก...", "loading");
     fetch(SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
+      method: "POST", mode: "no-cors",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: "saveCourses", courses: cloudCourses })
-    }).then(function() {
-      showToast("บันทึกหลักสูตรสำเร็จ ✓", "success");
-      // Refresh course dropdown
-      var sel = document.getElementById("s-course");
-      populateCourseSelect(sel);
-    }).catch(function() {
+    }).then(function () {
+      showToast("บันทึกหลักสูตรสำเร็จ", "success");
+      populateCourseSelect(document.getElementById("s-course"));
+    }).catch(function () {
       showToast("บันทึกเฉพาะเครื่อง (ไม่มีเน็ต)", "warning");
     });
   }
-
-  /* ══════════════════════════════════════════
-     UTILITY
-  ══════════════════════════════════════════ */
-  function escHtml(str) {
-    return String(str || "")
-      .replace(/&/g,"&amp;")
-      .replace(/</g,"&lt;")
-      .replace(/>/g,"&gt;")
-      .replace(/"/g,"&quot;");
-  }
-
-  /* expose renderDashboard for date tab clicks */
-  window.renderDashboard = renderDashboard;
-  window.activeDate = "";
-  Object.defineProperty(window, 'activeDate', {
-    get: function() { return activeDate; },
-    set: function(v) { activeDate = v; }
-  });
 
 })();
 </script>
